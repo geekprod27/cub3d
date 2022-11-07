@@ -3,7 +3,8 @@ NAME = cub3D
 SRC_PATH = srcs/
 OBJ_PATH = obj/
 
-SRC_NAME =	main.c
+SRC_NAME =	main.c \
+			tex.c
 
 MLX = mlx/libmlx.a
 
@@ -18,12 +19,12 @@ CFLAGS	= -Wall -Wextra -Werror -g
 all: $(NAME)
 
 $(NAME): $(OBJ) $(MLX)
-	@$(CC) -g $(CFLAGS) $(OBJ) -o $(NAME) $(MLX) -lXext -lX11
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(MLX) -lXext -lX11
 	@echo "\033[1;32mBuild $(NAME)\033[0m"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -g -I$(SRC_PATH) -o $@ -c $<
+	@$(CC) $(CFLAGS) -I$(SRC_PATH) -o $@ -c $<
 	@echo "\033[0;32mCompilation de $<\033[0m"
 
 $(MLX):

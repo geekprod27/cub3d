@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   tex.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/07 18:09:57 by nfelsemb         ###   ########.fr       */
+/*   Created: 2022/11/02 11:51:25 by nfelsemb          #+#    #+#             */
+/*   Updated: 2022/11/07 18:44:17 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "../cub3D.h"
 
-# include <stdio.h>
-# include <fcntl.h>
-# include "mlx/mlx.h"
-
-typedef struct s_tex
+t_tex	*get_tex(char *file)
 {
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-}	t_tex;
+	int		fd;
+	t_tex	*ret;
 
-t_tex	*get_tex(char *file);
-
-#endif
+	fd = open(file, O_RDONLY);
+	if (fd <= 0)
+		return (NULL);
+	ret = malloc(sizeof(t_tex));
+	if (!ret)
+		return (NULL);
+	//todo : gnl -> setpath t_tex
+	return (ret);
+}
