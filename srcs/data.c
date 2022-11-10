@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 11:51:25 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/08 17:20:24 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/10 14:06:01 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,18 +82,58 @@ t_data	*get_data(char *file)
 	ret->map = NULL;
 	if (!ret)
 		return (NULL);
-	while (i < 4)
+	while (i < 6)
 	{
 		line = get_next_line(fd);
 		if (ft_strncmp(line, "NO ", 3) == 0)
-			ret->no = ft_strdup(line + 3);
+		{
+			if (!ret->no)
+				ret->no = ft_strdup(line + 3);
+			else
+				error(line);
+			i++;
+		}
 		else if (ft_strncmp(line, "SO ", 3) == 0)
-			ret->so = ft_strdup(line + 3);
+		{
+			if (!ret->so)
+				ret->so = ft_strdup(line + 3);
+			else
+				error(line);
+			i++;
+		}
 		else if (ft_strncmp(line, "WE ", 3) == 0)
-			ret->we = ft_strdup(line + 3);
+		{
+			if (!ret->we)
+				ret->we = ft_strdup(line + 3);
+			else
+				error(line);
+			i++;
+		}
 		else if (ft_strncmp(line, "EA ", 3) == 0)
-			ret->ea = ft_strdup(line + 3);
-		else
+		{
+			if (!ret->ea)
+				ret->ea = ft_strdup(line + 3);
+			else
+				error(line);
+			i++;
+		}
+		else if (ft_strncmp(line, "F ", 2) == 0)
+		{
+			if (!ret->f)
+				ret->f = get_trgb(line + 2);
+			else
+				error(line);
+			i++;
+		}
+		else if (ft_strncmp(line, "C ", 2) == 0)
+		{
+			if (!ret->c)
+				ret->c = get_trgb(line + 2);
+			else
+				error(line);
+			i++;
+		}
+		else if (line[0] != '\n')
 		{
 			ft_putstr_fd("Error\nID inconue sur la ligne :\n", 2);
 			ft_putstr_fd(line, 2);
@@ -101,7 +141,6 @@ t_data	*get_data(char *file)
 			exit(1);
 		}
 		free(line);
-		i++;
 	}
 	line = get_next_line(fd);
 	while (line && line[0] == '\n')
@@ -109,32 +148,9 @@ t_data	*get_data(char *file)
 		free(line);
 		line = get_next_line(fd);
 	}
-	i = 0;
-	while (i < 2)
-	{
-		if (ft_strncmp(line, "F ", 2) == 0)
-			ret->f = get_trgb(line + 2);
-		else if (ft_strncmp(line, "C ", 2) == 0)
-			ret->c = get_trgb(line + 2);
-		else
-		{
-			ft_putstr_fd("Error\nID inconue sur la ligne :\n", 2);
-			ft_putstr_fd(line, 2);
-			free(line);
-			exit(1);
-		}
-		free(line);
-		line = get_next_line(fd);
-		i++;
-	}
-	while (line && line[0] == '\n')
-	{
-		free(line);
-		line = get_next_line(fd);
-	}
 	while (line)
 	{
-		ret->map = (ft_addb(ret->map, line));
+		ret->map = ft_addb(ret->map, line);
 		line = get_next_line(fd);
 	}
 	close(fd);

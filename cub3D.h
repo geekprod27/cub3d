@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/10 13:17:23 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/10 14:04:14 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ typedef struct s_data
 t_data		*get_data(char *file);
 int			verifmap(char **map);
 void		replace_space(char **map);
+void		error(char *d);
 
 #endif

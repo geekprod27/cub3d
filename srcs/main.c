@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 14:26:08 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/10 13:31:06 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/10 14:04:32 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@ int	key_hook(int keycode, void *vars)
 		exit(6);
 	(void) vars;
 	return (0);
+}
+
+void	error(char *d)
+{
+	ft_putstr_fd("Error\nMultiple ID :", 2);
+	ft_putstr_fd(d, 2);
+	exit(3);
 }
 
 int	main(int argc, char **argv)

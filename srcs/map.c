@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 15:43:01 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/10 13:16:45 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/10 13:48:55 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	verifmap(char **map)
 		y = 0;
 		while (map[x][y])
 		{
+			printf("x = %d, y = %d\n", x, y);
 			if (map[x][y] == '0')
 			{
 				if (x == 0 || !map[x + 1] || y == 0 || !map[x][y + 1]
