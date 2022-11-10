@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/10 13:17:23 by nfelsemb         ###   ########.fr       */
+/*   Created: 2021/11/25 13:56:29 by nfelsemb          #+#    #+#             */
+/*   Updated: 2021/11/29 17:10:56 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <fcntl.h>
-# include <stdlib.h>
-# include "mlx/mlx.h"
-# include "libft/libft.h"
-
-typedef struct s_data
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-	int		f;
-	int		c;
-	char	**map;
-}	t_data;
+	unsigned int	i;
+	unsigned int	lendst;
+	unsigned int	lensrc;
 
-t_data		*get_data(char *file);
-int			verifmap(char **map);
-void		replace_space(char **map);
-
-#endif
+	lendst = ft_strlen(dst);
+	lensrc = ft_strlen(src);
+	i = 0;
+	if (lendst > dstsize)
+		return (dstsize + lensrc);
+	while (i + lendst + 1 < dstsize && src[i])
+	{
+		dst[i + lendst] = src[i];
+		i++;
+	}
+	dst[i + lendst] = '\0';
+	return (lendst + lensrc);
+}

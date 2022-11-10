@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tex.c                                              :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 11:51:25 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/07 18:44:17 by nfelsemb         ###   ########.fr       */
+/*   Created: 2021/11/26 12:17:34 by nfelsemb          #+#    #+#             */
+/*   Updated: 2022/11/08 13:46:00 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "libft.h"
 
-t_tex	*get_tex(char *file)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int		fd;
-	t_tex	*ret;
+	char	*dest;
 
-	fd = open(file, O_RDONLY);
-	if (fd <= 0)
-		return (NULL);
-	ret = malloc(sizeof(t_tex));
-	if (!ret)
-		return (NULL);
-	//todo : gnl -> setpath t_tex
-	return (ret);
+	if (start > ft_strlen(s))
+		len = ft_strlen(s);
+	else if (ft_strlen(s) - start < len)
+		len = ft_strlen(s) - start;
+	dest = ft_calloc((len + 1), sizeof(char));
+	if (!dest || !s)
+		return (0);
+	if (start > ft_strlen(s))
+		dest[0] = 0;
+	else
+		ft_strlcpy(dest, (char *)s + start, len + 1);
+	return (dest);
 }

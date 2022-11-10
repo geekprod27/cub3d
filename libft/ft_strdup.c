@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/10 13:17:23 by nfelsemb         ###   ########.fr       */
+/*   Created: 2021/11/26 12:00:05 by nfelsemb          #+#    #+#             */
+/*   Updated: 2021/11/29 17:10:46 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <fcntl.h>
-# include <stdlib.h>
-# include "mlx/mlx.h"
-# include "libft/libft.h"
-
-typedef struct s_data
+char	*ft_strdup(const char *s)
 {
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-	int		f;
-	int		c;
-	char	**map;
-}	t_data;
+	int		i;
+	int		lens;
+	char	*ptr;
 
-t_data		*get_data(char *file);
-int			verifmap(char **map);
-void		replace_space(char **map);
-
-#endif
+	i = 0;
+	lens = ft_strlen(s);
+	ptr = malloc(sizeof(char) * lens + 1);
+	if (!ptr)
+		return (0);
+	while (i < lens)
+	{
+		ptr[i] = s[i];
+		i++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
+}

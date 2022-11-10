@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/10 13:17:23 by nfelsemb         ###   ########.fr       */
+/*   Created: 2021/11/29 16:39:40 by nfelsemb          #+#    #+#             */
+/*   Updated: 2021/11/29 16:45:38 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <fcntl.h>
-# include <stdlib.h>
-# include "mlx/mlx.h"
-# include "libft/libft.h"
-
-typedef struct s_data
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-	int		f;
-	int		c;
-	char	**map;
-}	t_data;
+	int	i;
 
-t_data		*get_data(char *file);
-int			verifmap(char **map);
-void		replace_space(char **map);
-
-#endif
+	i = 0;
+	while (s[i])
+	{
+		f(i, &s[i]);
+		i++;
+	}
+	s[i] = '\0';
+}

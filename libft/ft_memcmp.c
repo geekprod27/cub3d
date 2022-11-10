@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/10 13:17:23 by nfelsemb         ###   ########.fr       */
+/*   Created: 2021/11/24 17:04:22 by nfelsemb          #+#    #+#             */
+/*   Updated: 2021/11/30 12:43:34 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <fcntl.h>
-# include <stdlib.h>
-# include "mlx/mlx.h"
-# include "libft/libft.h"
-
-typedef struct s_data
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-	int		f;
-	int		c;
-	char	**map;
-}	t_data;
+	unsigned char		*sa;
+	unsigned char		*sb;
+	size_t				i;
 
-t_data		*get_data(char *file);
-int			verifmap(char **map);
-void		replace_space(char **map);
-
-#endif
+	i = 0;
+	sa = (unsigned char *) s1;
+	sb = (unsigned char *) s2;
+	while (i < n)
+	{
+		if (sa[i] != sb[i])
+			return (sa[i] - sb[i]);
+		i++;
+	}
+	if (i == n)
+		return (0);
+	return (sa[i] - sb[i]);
+}
