@@ -6,23 +6,41 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 14:26:08 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/10 14:04:32 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/10 18:18:47 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-int	key_hook(int keycode, void *vars)
+int	redcross(void *param)
+{
+	(void) param;
+	exit(0);
+}
+
+int	keydown(int keycode, void *param)
 {
 	if (keycode == 65307)
-		exit(6);
-	(void) vars;
+		exit(0);
+	if (keycode == 119)
+		printf("w down\n");
+	else if (keycode == 115)
+		printf("s down\n");
+	else if (keycode == 97)
+		printf("a down\n");
+	else if (keycode == 100)
+		printf("d down\n");
+	else if (keycode == 65361)
+		printf("<- down\n");
+	else if (keycode == 65363)
+		printf("-> down\n");
+	(void) param;
 	return (0);
 }
 
 void	error(char *d)
 {
-	ft_putstr_fd("Error\nMultiple ID :", 2);
+	ft_putstr_fd("Error\nMultiple ID :\n", 2);
 	ft_putstr_fd(d, 2);
 	exit(3);
 }
@@ -69,6 +87,7 @@ int	main(int argc, char **argv)
 		}
 		y--;
 	}
-	mlx_key_hook(mlx_win, key_hook, 0);
+	mlx_hook(mlx_win, ON_KEYDOWN, 1L << 0, keydown, 0);
+	mlx_hook(mlx_win, ON_DESTROY, 0, redcross, 0);
 	mlx_loop(mlx_ptr);
 }
