@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 15:43:01 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/10 18:06:14 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/11 15:33:19 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,16 @@ int	verifmap(char **map)
 
 	x = 0;
 	havespwn = 0;
+	if (!map)
+		return (0);
 	while (map[x])
 	{
 		y = 0;
 		while (map[x][y])
 		{
 			//printf("x = %d, y = %d\n", x, y);
-			if (map[x][y] == '0')
+			if (map[x][y] == '0' || map[x][y] == 'N' || map[x][y] == 'S'
+				|| map[x][y] == 'E' || map[x][y] == 'W')
 			{
 				if (x == 0 || !map[x + 1] || y == 0 || !map[x][y + 1]
 					|| map[x][y + 1] == '\n')
@@ -36,7 +39,7 @@ int	verifmap(char **map)
 					|| map[x][y + 1] == '\n')
 					return (0);
 			}
-			else if (map[x][y] == 'N' || map[x][y] == 'S' || map[x][y] == 'E'
+			if (map[x][y] == 'N' || map[x][y] == 'S' || map[x][y] == 'E'
 				|| map[x][y] == 'W')
 			{
 				if (havespwn)

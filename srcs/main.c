@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 14:26:08 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/10 18:18:47 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/11 14:15:25 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,11 @@ int	main(int argc, char **argv)
 		return (1);
 	tex = get_data(argv[1]);
 	i = 0;
+	if (!tex)
+	{
+		ft_putstr_fd("Error\n", 2);
+		exit(2);
+	}
 	if (!verifmap(tex->map))
 	{
 		ft_putstr_fd("Error\nMap invalide", 2);

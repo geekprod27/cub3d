@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 11:51:25 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/10 18:06:16 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/11 15:54:33 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	get_trgb(char *line)
 		line++;
 	line++;
 	b = ft_atoi(line);
+	if (r > 255 || g > 255 || b > 255 )
+		return (0);
 	return (create_trgb(1, r, g, b));
 }
 
@@ -76,15 +78,17 @@ t_data	*get_data(char *file)
 
 	i = 0;
 	fd = open(file, O_RDONLY);
-	if (fd <= 0)
+	if (fd < 0)
 		return (NULL);
 	ret = malloc(sizeof(t_data));
-	ret->map = NULL;
 	if (!ret)
 		return (NULL);
+	ret->map = NULL;
 	while (i < 6)
 	{
 		line = get_next_line(fd);
+		if (!line)
+			return (NULL);
 		if (ft_strncmp(line, "NO ", 3) == 0)
 		{
 			if (!ret->no)
@@ -148,7 +152,7 @@ t_data	*get_data(char *file)
 		free(line);
 		line = get_next_line(fd);
 	}
-	while (line)
+	while (line && line[0] != '\n')
 	{
 		ret->map = ft_addb(ret->map, line);
 		line = get_next_line(fd);
