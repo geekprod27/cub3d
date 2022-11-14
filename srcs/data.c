@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 11:51:25 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/11 15:54:33 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/14 16:33:22 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,20 @@ int	get_trgb(char *line)
 	int	b;
 
 	r = ft_atoi(line);
-	while (*line != ',')
+	while (*line && *line != ',')
 		line++;
 	line++;
+	if (*line == ',')
+		return (-1);
 	g = ft_atoi(line);
-	while (*line != ',')
+	while (*line && *line != ',')
 		line++;
 	line++;
+	if (*line == ',')
+		return (-1);
 	b = ft_atoi(line);
-	if (r > 255 || g > 255 || b > 255 )
-		return (0);
+	if (r > 255 || g > 255 || b > 255)
+		return (-1);
 	return (create_trgb(1, r, g, b));
 }
 
@@ -124,7 +128,11 @@ t_data	*get_data(char *file)
 		else if (ft_strncmp(line, "F ", 2) == 0)
 		{
 			if (!ret->f)
+			{
 				ret->f = get_trgb(line + 2);
+				if (ret->f == -1)
+					error(line);
+			}
 			else
 				error(line);
 			i++;
@@ -132,7 +140,11 @@ t_data	*get_data(char *file)
 		else if (ft_strncmp(line, "C ", 2) == 0)
 		{
 			if (!ret->c)
+			{
 				ret->c = get_trgb(line + 2);
+				if (ret->c == -1)
+					error(line);
+			}
 			else
 				error(line);
 			i++;

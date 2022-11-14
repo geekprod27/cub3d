@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 15:43:01 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/11 15:33:19 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/14 16:40:30 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ int	verifmap(char **map)
 					return (0);
 				havespwn = 1;
 			}
-			else if (map[x][y] != '1' && map[x][y] != ' ' && map[x][y] != '\n')
+			else if (map[x][y] != '1' && map[x][y] != ' ' && map[x][y] != '\n'
+				&& map[x][y] != '0')
 				return (0);
 			y++;
 		}
