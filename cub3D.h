@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/10 18:09:48 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/14 18:07:33 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # include "mlx/mlx.h"
 # include "libft/libft.h"
 
+# define MOVESPEED 1
+# define ROTSPEED 1
+
 typedef struct s_data
 {
 	char	*no;
@@ -28,6 +31,12 @@ typedef struct s_data
 	int		f;
 	int		c;
 	char	**map;
+	double	posx;
+	double	posy;
+	double	planx;
+	double	plany;
+	double	dirx;
+	double	diry;
 }	t_data;
 
 enum {
