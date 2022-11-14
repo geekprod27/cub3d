@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/14 18:07:33 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/14 18:53:37 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <stdlib.h>
+# include <math.h>
 # include "mlx/mlx.h"
 # include "libft/libft.h"
 
@@ -37,6 +38,7 @@ typedef struct s_data
 	double	plany;
 	double	dirx;
 	double	diry;
+	char	spawn;
 }	t_data;
 
 enum {
@@ -50,8 +52,15 @@ enum {
 };
 
 t_data		*get_data(char *file);
-int			verifmap(char **map);
+int			verifmap(char **map, t_data *data);
 void		replace_space(char **map);
 void		error(char *d);
+
+//		MOUVEMENT
+
+void		avancer(t_data *data);
+void		reculer(t_data *data);
+void		rotl(t_data	*data);
+void		rotr(t_data	*data);
 
 #endif

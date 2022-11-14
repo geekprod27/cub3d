@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 14:26:08 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/11 14:15:25 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/14 18:54:30 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,23 @@ int	redcross(void *param)
 
 int	keydown(int keycode, void *param)
 {
+	t_data	*data;
+
+	data = param;
 	if (keycode == 65307)
 		exit(0);
 	if (keycode == 119)
-		printf("w down\n");
+		avancer(data);
 	else if (keycode == 115)
-		printf("s down\n");
+		reculer(data);
 	else if (keycode == 97)
 		printf("a down\n");
 	else if (keycode == 100)
 		printf("d down\n");
 	else if (keycode == 65361)
-		printf("<- down\n");
+		rotl(data);
 	else if (keycode == 65363)
-		printf("-> down\n");
-	(void) param;
+		rotr(data);
 	return (0);
 }
 
@@ -62,7 +64,7 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Error\n", 2);
 		exit(2);
 	}
-	if (!verifmap(tex->map))
+	if (!verifmap(tex->map, tex))
 	{
 		ft_putstr_fd("Error\nMap invalide", 2);
 		exit(2);
@@ -92,7 +94,7 @@ int	main(int argc, char **argv)
 		}
 		y--;
 	}
-	mlx_hook(mlx_win, ON_KEYDOWN, 1L << 0, keydown, 0);
+	mlx_hook(mlx_win, ON_KEYDOWN, 1L << 0, keydown, tex);
 	mlx_hook(mlx_win, ON_DESTROY, 0, redcross, 0);
 	mlx_loop(mlx_ptr);
 }
