@@ -6,13 +6,13 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 15:43:01 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/14 16:40:30 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/14 18:13:31 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-int	verifmap(char **map)
+int	verifmap(char **map, t_data *data)
 {
 	int	x;
 	int	y;
@@ -45,6 +45,8 @@ int	verifmap(char **map)
 				if (havespwn)
 					return (0);
 				havespwn = 1;
+				data->posx = y;
+				data->posy = x;
 			}
 			else if (map[x][y] != '1' && map[x][y] != ' ' && map[x][y] != '\n'
 				&& map[x][y] != '0')
