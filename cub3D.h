@@ -6,7 +6,11 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/11/15 12:13:52 by llepiney         ###   ########.fr       */
+=======
+/*   Updated: 2022/11/15 12:12:38 by nfelsemb         ###   ########.fr       */
+>>>>>>> cfe91e93cc753e0aec88801e4266af90c1cfc5b0
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +20,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <stdlib.h>
+# include <math.h>
 # include "mlx/mlx.h"
 # include "libft/libft.h"
 
@@ -39,8 +44,10 @@ typedef struct s_data
 	double	plany;
 	double	dirx;
 	double	diry;
+	char	spawn;
 }	t_data;
 
+<<<<<<< HEAD
 typedef struct s_ray
 {
 	double	camerax;
@@ -62,6 +69,22 @@ typedef struct s_ray
 	int		drawend;
 
 }	t_ray;
+=======
+typedef struct s_mlx	t_mlx;
+struct s_mlx
+{
+	void	*mlx_ptr;
+	void	*mlx_win;
+	int		color;
+}	t_mlx;
+
+typedef struct s_point	t_point;
+struct s_point
+{
+	int		x;
+	int		y;
+};
+>>>>>>> cfe91e93cc753e0aec88801e4266af90c1cfc5b0
 
 enum {
 	ON_KEYDOWN = 2,
@@ -74,9 +97,16 @@ enum {
 };
 
 t_data		*get_data(char *file);
-int			verifmap(char **map);
+int			verifmap(char **map, t_data *data);
 void		replace_space(char **map);
 void		error(char *d);
 int			create_trgb(int t, int r, int g, int b);
+
+//		MOUVEMENT
+
+void		avancer(t_data *data);
+void		reculer(t_data *data);
+void		rotl(t_data	*data);
+void		rotr(t_data	*data);
 
 #endif

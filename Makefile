@@ -5,7 +5,8 @@ OBJ_PATH = obj/
 
 SRC_NAME =	main.c 			\
 			data.c 			\
-			map.c
+			map.c			\
+			move.c
 
 MLX = mlx/libmlx.a
 LIBFT = ./libft/libft.a
