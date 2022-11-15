@@ -6,7 +6,7 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:09:19 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/15 16:18:24 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/15 17:08:48 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,22 +53,22 @@ void	init_dir_plan_time(t_data *tex)
 
 	if (tex->spawn == 'N')
 	{
-		tex->planx = 0.66;
+		tex->plany = 0.66;
 		tex->dirx = -1;
 	}
 	else if (tex->spawn == 'S')
 	{
-		tex->planx = -0.66;
+		tex->plany = -0.66;
 		tex->dirx = 1;
 	}
 	else if (tex->spawn == 'E')
 	{
-		tex->plany = 0.66;
+		tex->planx = 0.66;
 		tex->dirx = 1;
 	}
 	else if (tex->spawn == 'W')
 	{
-		tex->plany = -0.66;
+		tex->planx = -0.66;
 		tex->dirx = -1;
 	}
 }
