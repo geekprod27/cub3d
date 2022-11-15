@@ -6,11 +6,43 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:09:19 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/15 14:24:41 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:18:24 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include  "../cub3D.h"
+
+void	print_data(t_data *tex)
+{
+	printf("[******************DATA]*****************\n");
+	printf("posx : %f\n", tex->posx);
+	printf("posy : %f\n", tex->posy);
+	printf("planx : %f\n", tex->planx);
+	printf("plany : %f\n", tex->plany);
+	printf("dirx : %f\n", tex->dirx);
+	printf("diry : %f\n\n", tex->diry);
+}
+void	print_ray(t_ray *rays)
+{
+	printf("[******************RAY DATA]*****************\n");
+	printf("camerax : %f\n", rays->camerax);
+	printf("raydirx : %f\n", rays->raydirx);
+	printf("raydiry : %f\n", rays->raydiry);
+	printf("mapx : %d\n", rays->mapx);
+	printf("mapy : %d\n", rays->mapy);
+	printf("deltadistx : %f\n", rays->deltadistx);
+	printf("deltadisty : %f\n", rays->deltadisty);
+	printf("stepx : %d\n", rays->stepx);
+	printf("stepy : %d\n", rays->stepy);
+	printf("sidedistx : %f\n", rays->sidedistx);
+	printf("sidedisty : %f\n", rays->sidedisty);
+	printf("perpwalldist : %f\n", rays->perpwalldist);
+	printf("hit : %d\n", rays->hit);
+	printf("side : %d\n", rays->side);
+	printf("lineheight : %d\n", rays->lineheight);
+	printf("drawstart : %d\n", rays->drawstart);
+	printf("drawend : %d\n\n", rays->drawend);
+}
 
 void	init_dir_plan_time(t_data *tex)
 {
@@ -62,11 +94,11 @@ void	raycasting_loop(t_data *tex, t_mlx *mlx)
 		if (rays->raydirx == 0)
 			rays->deltadistx = 1e30;
 		else
-			rays->deltadistx = abs((int)(1 / rays->raydirx));
+			rays->deltadistx = fabs((1 / rays->raydirx));
 		if (rays->raydiry == 0)
 			rays->deltadisty = 1e30;
 		else
-			rays->deltadisty = abs((int)(1 / rays->raydiry));
+			rays->deltadisty = fabs((1 / rays->raydiry));
 
 		//INIT step(square info) and dist to do to jump to each square
 		if (rays->raydirx < 0)
@@ -93,7 +125,6 @@ void	raycasting_loop(t_data *tex, t_mlx *mlx)
 		//DDA algorithm
 		while (rays->hit == 0)
 		{
-			fprintf(stderr, "hit\n");
 			if (rays->sidedistx < rays->sidedisty)
 			{
 				rays->sidedistx += rays->deltadistx;
@@ -112,31 +143,42 @@ void	raycasting_loop(t_data *tex, t_mlx *mlx)
 
 			//calc perpendicular dist ray to hit wall AKA perpwalldist
 			if (rays->side == 0)
+			{
+				printf("Use x perp\n");
 				rays->perpwalldist = rays->sidedistx - rays->deltadistx;
+			}
 			else
+			{
+				printf("Use y perp\n");
 				rays->perpwalldist = rays->sidedisty - rays->deltadisty;
+			}
 
 			//calc lineHeight AKA line to be drawn + 
 			//start and end of it (lowest/highest pixel to fill in current stripe)
-			rays->lineheight = (int)(HEIGHT / rays->perpwalldist);
+			if (rays->perpwalldist == 0)
+				rays->lineheight = HEIGHT - 2;
+			else
+				rays->lineheight = (int)(HEIGHT / rays->perpwalldist);
 			rays->drawstart = -(rays->lineheight) / 2 + HEIGHT / 2;
 			if (rays->drawstart < 0)
 				rays->drawstart = 0;
 		
 			rays->drawend = rays->lineheight / 2 + HEIGHT / 2;
-			if (rays->drawend < 0)
+			if (rays->drawend >= HEIGHT)
 				rays->drawend = HEIGHT - 1;
 		}
 		//diff colours for walls
-			int	colour;
-			if (tex->map[rays->mapy][rays->mapx] == '1')
-				colour = create_trgb(1, 0, 0, 255);
-			else
-				colour = create_trgb(1, 255, 0, 0);
-			
-			if (rays->side == 1)
-				colour /= 2;
-			verline(x, rays->drawstart, rays->drawend, colour, mlx);
+		int	colour;
+		// if (tex->map[rays->mapy][rays->mapx] == '1')
+		colour = create_trgb(1, 0, 255, 0);
+		// else
+		// 	colour = create_trgb(1, 255, 0, 0);
+		
+		if (rays->side == 1)
+			colour = create_trgb(1, 0, 255 /2, 0);
+		// print_data(tex);
+		// print_ray(rays);
+		verline(x, rays->drawstart, rays->drawend, colour, mlx);
 		x++;
 	}
 }

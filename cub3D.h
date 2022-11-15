@@ -6,7 +6,7 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/15 14:18:58 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/15 15:59:11 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "libft/libft.h"
 
 # define MOVESPEED 1
-# define ROTSPEED 1
+# define ROTSPEED 0.001
 # define HEIGHT 1000
 # define WIDTH 1000
 
