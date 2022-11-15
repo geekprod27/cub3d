@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 14:26:08 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/15 12:19:11 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/15 12:24:25 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (1);
+	/*get toutes les daata du fichier*/
 	tex = get_data(argv[1]);
 	if (!tex)
 	{
