@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/11/15 12:13:52 by llepiney         ###   ########.fr       */
-=======
-/*   Updated: 2022/11/15 12:12:38 by nfelsemb         ###   ########.fr       */
->>>>>>> cfe91e93cc753e0aec88801e4266af90c1cfc5b0
+/*   Updated: 2022/11/15 12:54:54 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +25,14 @@
 # define HEIGHT 1000
 # define WIDTH 1000
 
+typedef struct s_mlx	t_mlx;
+struct s_mlx
+{
+	void	*mlx_ptr;
+	void	*mlx_win;
+	int		color;
+};
+
 typedef struct s_data
 {
 	char	*no;
@@ -45,9 +49,9 @@ typedef struct s_data
 	double	dirx;
 	double	diry;
 	char	spawn;
+	t_mlx	*mlx;
 }	t_data;
 
-<<<<<<< HEAD
 typedef struct s_ray
 {
 	double	camerax;
@@ -69,14 +73,6 @@ typedef struct s_ray
 	int		drawend;
 
 }	t_ray;
-=======
-typedef struct s_mlx	t_mlx;
-struct s_mlx
-{
-	void	*mlx_ptr;
-	void	*mlx_win;
-	int		color;
-}	t_mlx;
 
 typedef struct s_point	t_point;
 struct s_point
@@ -84,7 +80,6 @@ struct s_point
 	int		x;
 	int		y;
 };
->>>>>>> cfe91e93cc753e0aec88801e4266af90c1cfc5b0
 
 enum {
 	ON_KEYDOWN = 2,
@@ -101,6 +96,8 @@ int			verifmap(char **map, t_data *data);
 void		replace_space(char **map);
 void		error(char *d);
 int			create_trgb(int t, int r, int g, int b);
+void		raycasting_loop(t_data *tex, t_mlx *mlx);
+void		verline(int x, int strat, int end, int color, t_mlx	*mlx);
 
 //		MOUVEMENT
 
