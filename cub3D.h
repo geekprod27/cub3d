@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/14 18:53:37 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/15 12:12:38 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,21 @@ typedef struct s_data
 	double	diry;
 	char	spawn;
 }	t_data;
+
+typedef struct s_mlx	t_mlx;
+struct s_mlx
+{
+	void	*mlx_ptr;
+	void	*mlx_win;
+	int		color;
+}	t_mlx;
+
+typedef struct s_point	t_point;
+struct s_point
+{
+	int		x;
+	int		y;
+};
 
 enum {
 	ON_KEYDOWN = 2,
