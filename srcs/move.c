@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:08:44 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/15 17:34:21 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/15 17:46:26 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	avancer(t_data *data)
 	int	x;
 
 	x = (int)(data->posx + data->dirx * MOVESPEED);
-	fprintf(stderr, "%d %d\n", x, (int)data->posy);
 	if (data->map[(int) data->posy][x] != '1')
 		data->posx += data->dirx * MOVESPEED;
 	x = (int)(data->posy + data->diry * MOVESPEED);

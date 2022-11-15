@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:09:19 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/15 17:28:50 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/15 17:46:00 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ void	init_dir_plan_time(t_data *tex)
 	else if (tex->spawn == 'E')
 	{
 		tex->planx = 0.66;
-		tex->dirx = 1;
+		tex->diry = 1;
 	}
 	else if (tex->spawn == 'W')
 	{
 		tex->planx = -0.66;
-		tex->dirx = -1;
+		tex->diry = -1;
 	}
 }
 
@@ -143,15 +143,9 @@ void	raycasting_loop(t_data *tex, t_mlx *mlx)
 
 			//calc perpendicular dist ray to hit wall AKA perpwalldist
 			if (rays->side == 0)
-			{
-				//printf("Use x perp\n");
 				rays->perpwalldist = rays->sidedistx - rays->deltadistx;
-			}
 			else
-			{
-				//printf("Use y perp\n");
 				rays->perpwalldist = rays->sidedisty - rays->deltadisty;
-			}
 
 			//calc lineHeight AKA line to be drawn + 
 			//start and end of it (lowest/highest pixel to fill in current stripe)
