@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 14:26:08 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/11 14:15:25 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/14 18:35:53 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (1);
+	/*get toutes les daata du fichier*/
 	tex = get_data(argv[1]);
 	i = 0;
 	if (!tex)
@@ -69,7 +70,7 @@ int	main(int argc, char **argv)
 	}
 	replace_space(tex->map);
 	mlx_ptr = mlx_init();
-	mlx_win = mlx_new_window(mlx_ptr, 1000, 1000, "cub3D");
+	mlx_win = mlx_new_window(mlx_ptr, WIDTH, HEIGHT, "cub3D");
 	y = 0;
 	while (y < 100)
 	{

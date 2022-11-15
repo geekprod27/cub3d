@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/14 18:07:33 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/15 12:13:52 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 
 # define MOVESPEED 1
 # define ROTSPEED 1
+# define HEIGHT 1000
+# define WIDTH 1000
 
 typedef struct s_data
 {
@@ -39,6 +41,28 @@ typedef struct s_data
 	double	diry;
 }	t_data;
 
+typedef struct s_ray
+{
+	double	camerax;
+	double	raydirx;
+	double	raydiry;
+	int		mapx;
+	int		mapy;
+	double	sidedistx;
+	double	sidedisty;
+	double	deltadistx;
+	double	deltadisty;
+	double	perpwalldist;
+	int		stepx;
+	int		stepy;
+	int		hit;
+	int		side;
+	int		lineheight;
+	int		drawstart;
+	int		drawend;
+
+}	t_ray;
+
 enum {
 	ON_KEYDOWN = 2,
 	ON_KEYUP = 3,
@@ -53,5 +77,6 @@ t_data		*get_data(char *file);
 int			verifmap(char **map);
 void		replace_space(char **map);
 void		error(char *d);
+int			create_trgb(int t, int r, int g, int b);
 
 #endif
