@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/15 12:54:54 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/15 14:18:58 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int			verifmap(char **map, t_data *data);
 void		replace_space(char **map);
 void		error(char *d);
 int			create_trgb(int t, int r, int g, int b);
+void		init_dir_plan_time(t_data *tex);
 void		raycasting_loop(t_data *tex, t_mlx *mlx);
 void		verline(int x, int strat, int end, int color, t_mlx	*mlx);
 

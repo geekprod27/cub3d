@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 14:26:08 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/15 12:53:44 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/15 14:13:16 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	main(int argc, char **argv)
 	tex->mlx = mlx;
 	mlx_hook(mlx->mlx_win, ON_KEYDOWN, 1L << 0, keydown, tex);
 	mlx_hook(mlx->mlx_win, ON_DESTROY, 0, redcross, 0);
+	init_dir_plan_time(tex);
 	raycasting_loop(tex, tex->mlx);
 	mlx_loop(mlx->mlx_ptr);
 }
