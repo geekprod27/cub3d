@@ -6,11 +6,55 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 12:01:19 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/15 12:13:47 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/15 13:00:43 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
+
+void	uno(t_mlx *ptr, t_point *un, t_point *de, t_point d)
+{
+	int	e;
+
+	e = d.x;
+	d.x = e * 2;
+	d.y = d.y * 2;
+	while (1)
+	{
+		mlx_pixel_put(ptr->mlx_ptr, ptr->mlx_win, un->x, un->y, ptr->color);
+		un->x = un->x + 1;
+		if (un->x == de->x)
+			break ;
+		e = e - d.y;
+		if (e < 0)
+		{
+			un->y = un->y + 1;
+			e = e + d.x;
+		}
+	}
+}
+
+void	deux(t_mlx *ptr, t_point *un, t_point *de, t_point d)
+{
+	int	e;
+
+	e = d.y;
+	d.y = e * 2;
+	d.x = d.x * 2;
+	while (1)
+	{
+		mlx_pixel_put(ptr->mlx_ptr, ptr->mlx_win, un->x, un->y, ptr->color);
+		un->y = un->y + 1;
+		if (un->y == de->y)
+			break ;
+		e = e - d.x;
+		if (e < 0)
+		{
+			un->x = un->x + 1;
+			e = e + d.y;
+		}
+	}
+}
 
 void	troi(t_mlx *ptr, t_point *un, t_point *de, t_point d)
 {
@@ -124,9 +168,11 @@ void	verline(int x, int strat, int end, int color, t_mlx	*mlx)
 	t_point	un;
 	t_point	de;
 
+	fprintf(stderr, "%d %d %d %d\n", x, strat, end, color);
 	un.x = x;
 	de.x = x;
 	un.y = strat;
 	de.y = end;
 	mlx->color = color;
+	seg(un, de, mlx);
 }
