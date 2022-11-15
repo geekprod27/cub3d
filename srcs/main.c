@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 14:26:08 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/14 18:54:30 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/15 12:19:11 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,12 @@ void	error(char *d)
 
 int	main(int argc, char **argv)
 {
-	void	*mlx_ptr;
-	void	*mlx_win;
 	t_data	*tex;
-	int		i;
-	int		y;
+	t_mlx	mlx;
 
 	if (argc != 2)
 		return (1);
 	tex = get_data(argv[1]);
-	i = 0;
 	if (!tex)
 	{
 		ft_putstr_fd("Error\n", 2);
@@ -70,31 +66,9 @@ int	main(int argc, char **argv)
 		exit(2);
 	}
 	replace_space(tex->map);
-	mlx_ptr = mlx_init();
-	mlx_win = mlx_new_window(mlx_ptr, 1000, 1000, "cub3D");
-	y = 0;
-	while (y < 100)
-	{
-		i = 0;
-		while (i < 1000)
-		{
-			mlx_pixel_put(mlx_ptr, mlx_win, i, 0 + y, tex->c);
-			i++;
-		}
-		y++;
-	}
-	y = 100;
-	while (y > 0)
-	{
-		i = 0;
-		while (i < 1000)
-		{
-			mlx_pixel_put(mlx_ptr, mlx_win, i, 1000 - y, tex->f);
-			i++;
-		}
-		y--;
-	}
-	mlx_hook(mlx_win, ON_KEYDOWN, 1L << 0, keydown, tex);
-	mlx_hook(mlx_win, ON_DESTROY, 0, redcross, 0);
-	mlx_loop(mlx_ptr);
+	mlx.mlx_ptr = mlx_init();
+	mlx.mlx_win = mlx_new_window(mlx.mlx_ptr, 1000, 1000, "cub3D");
+	mlx_hook(mlx.mlx_win, ON_KEYDOWN, 1L << 0, keydown, tex);
+	mlx_hook(mlx.mlx_win, ON_DESTROY, 0, redcross, 0);
+	mlx_loop(mlx.mlx_ptr);
 }
