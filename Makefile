@@ -13,6 +13,9 @@ SRC_NAME =	main.c 			\
 MLX = mlx/libmlx.a
 LIBFT = ./libft/libft.a
 
+PROGRESS = 🔁
+CHECK = ✅
+
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
 SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
@@ -28,19 +31,20 @@ $(NAME): $(LIBFT) $(MLX) $(OBJ)
 	@echo "\033[1;32mBuild $(NAME)\033[0m"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
+	@printf "\e[2K\r- $< [${PROGRESS}]"
 	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) -I$(SRC_PATH) -o $@ -c $<
-	@echo "\033[0;32mCompilation de $<\033[0m"
+	@printf "\e[2K\r- $< [${CHECK}]\n"
 
 $(MLX):
-	@echo "\033[1;32mCompilation mlx\033[0m"
+	@printf "\e[2K\r- MLX [${PROGRESS}]"
 	@make --no-print-directory -C ./mlx  > /dev/null
-	@echo "\033[1;32mBuild $(MLX)\033[0m"
+	@printf "\e[2K\r- MLX [${CHECK}]\n"
 
 $(LIBFT):
-	@echo "\033[1;32mCompilation libft\033[0m"
+	@printf "\e[2K\r- Libft [${PROGRESS}]"
 	@$(MAKE) --no-print-directory -C ./libft
-	@echo "\033[1;32mBuild $(LIBFT)\033[0m"
+	@printf "\e[2K\r- Libft [${CHECK}]\n"
 
 clean:
 	@rm -rf $(OBJ_PATH)
