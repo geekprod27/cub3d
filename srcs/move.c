@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:08:44 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/15 17:06:30 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/15 17:34:21 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 void	avancer(t_data *data)
 {
-	// int	x;
+	int	x;
 
-	// x = (int)(data->posx + data->dirx * MOVESPEED);
-	// if (data->map[x][(int) data->posy] == '0')
+	x = (int)(data->posx + data->dirx * MOVESPEED);
+	fprintf(stderr, "%d %d\n", x, (int)data->posy);
+	if (data->map[(int) data->posy][x] != '1')
 		data->posx += data->dirx * MOVESPEED;
-	// x = (int)(data->posy + data->diry * MOVESPEED);
-	// if (data->map[(int) data->posx][x] == '0')
+	x = (int)(data->posy + data->diry * MOVESPEED);
+	if (data->map[x][(int) data->posx] != '1')
 		data->posy += data->diry * MOVESPEED;
 	mlx_clear_window(data->mlx->mlx_ptr, data->mlx->mlx_win);
 	raycasting_loop(data, data->mlx);
@@ -28,13 +29,13 @@ void	avancer(t_data *data)
 
 void	reculer(t_data	*data)
 {
-	// int	x;
+	int	x;
 
-	// x = (int)(data->posx - data->dirx * MOVESPEED);
-	// if (data->map[x][(int)(data->posy)] == '0')
+	x = (int)(data->posx - data->dirx * MOVESPEED);
+	if (data->map[(int)(data->posy)][x] != '1')
 		data->posx -= data->dirx * MOVESPEED;
-	// x = (int)(data->posy - data->diry * MOVESPEED);
-	// if (data->map[(int)(data->posx)][x] == '0')
+	x = (int)(data->posy - data->diry * MOVESPEED);
+	if (data->map[x][(int)(data->posx)] != '1')
 		data->posy -= data->diry * MOVESPEED;
 	mlx_clear_window(data->mlx->mlx_ptr, data->mlx->mlx_win);
 	raycasting_loop(data, data->mlx);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   seg.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 12:01:19 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/15 15:48:36 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/15 17:28:59 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ void	verline(int x, int strat, int end, int color, t_mlx	*mlx)
 	t_point	un;
 	t_point	de;
 
-	fprintf(stderr, "%d %d %d %d\n", x, strat, end, color);
+	//fprintf(stderr, "%d %d %d %d\n", x, strat, end, color);
 	un.x = x;
 	de.x = x;
 	un.y = strat;

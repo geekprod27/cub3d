@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/15 17:06:39 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/15 17:35:15 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include "mlx/mlx.h"
 # include "libft/libft.h"
 
-# define MOVESPEED 1
-# define ROTSPEED 0.01
+# define MOVESPEED 0.5
+# define ROTSPEED 0.1
 # define HEIGHT 1000
 # define WIDTH 1000
 
