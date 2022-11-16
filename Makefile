@@ -27,35 +27,38 @@ CFLAGS	= -Wall -Wextra -Werror -g
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(MLX) $(OBJ)
+	@printf "\e[2K\r- Build \033[1;33m${NAME}\033[0m [${PROGRESS}]"
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(MLX) $(LIBFT) -lXext -lX11
-	@echo "\033[1;32mBuild $(NAME)\033[0m"
+	@printf "\e[2K\r- Build \033[1;32m${NAME}\033[0m [${CHECK}]\n"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@printf "\e[2K\r- $< [${PROGRESS}]"
+	@printf "\e[2K\r- \033[1;34m$<\033[0m [${PROGRESS}]"
 	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) -I$(SRC_PATH) -o $@ -c $<
-	@printf "\e[2K\r- $< [${CHECK}]\n"
+	@printf "\e[2K\r- \033[1;32m$<\033[0m [${CHECK}]\n"
 
 $(MLX):
-	@printf "\e[2K\r- MLX [${PROGRESS}]"
+	@printf "\e[2K\r-[\033[1mLIB\033[0m] \033[1;33mMLX\033[0m [${PROGRESS}]"
 	@make --no-print-directory -C ./mlx  > /dev/null
-	@printf "\e[2K\r- MLX [${CHECK}]\n"
+	@printf "\e[2K\r-[\033[1mLIB\033[0m] \033[1;32mMLX\033[0m [${CHECK}]\n"
 
 $(LIBFT):
-	@printf "\e[2K\r- Libft [${PROGRESS}]"
+	@printf "\e[2K\r-[\033[1mLIB\033[0m] \033[1;33mLibft\033[0m [${PROGRESS}]"
 	@$(MAKE) --no-print-directory -C ./libft
-	@printf "\e[2K\r- Libft [${CHECK}]\n"
+	@printf "\e[2K\r-[\033[1mLIB\033[0m] \033[1;32mLibft\033[0m [${CHECK}]\n"
 
 clean:
+	@printf "\e[2K\r- \033[36mClean des objs\033[0m [${PROGRESS}]"
 	@rm -rf $(OBJ_PATH)
 	@make clean --no-print-directory -C ./mlx
 	@$(MAKE) clean --no-print-directory -C ./libft
-	@echo "\033[0;36mClean des objs\033[0m"
+	@printf "\e[2K\r- \033[31mClean des objs\033[0m [${CHECK}]\n"
 
 fclean:	clean
+	@printf "\e[2K\r- \033[36mClean de lexecutable\033[0m [${PROGRESS}]"
 	@rm -f $(NAME)
 	@$(MAKE) fclean --no-print-directory -C ./libft
-	@echo "\033[0;34mClean de l'executable\033[0m"
+	@printf "\e[2K\r- \033[31mClean de lexecutable\033[0m [${CHECK}]\n"
 
 re:	fclean
 	@make all
