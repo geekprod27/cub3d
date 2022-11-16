@@ -6,18 +6,13 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 11:51:25 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/14 16:33:22 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:55:57 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-int	create_trgb(int t, int r, int g, int b)
-{
-	return (t << 24 | r << 16 | g << 8 | b);
-}
-
-int	get_trgb(char *line)
+void	get_trgb(char *line, t_data	*data, char l)
 {
 	int	r;
 	int	g;
@@ -28,17 +23,28 @@ int	get_trgb(char *line)
 		line++;
 	line++;
 	if (*line == ',')
-		return (-1);
+		return ;
 	g = ft_atoi(line);
 	while (*line && *line != ',')
 		line++;
 	line++;
 	if (*line == ',')
-		return (-1);
+		return ;
 	b = ft_atoi(line);
 	if (r > 255 || g > 255 || b > 255)
-		return (-1);
-	return (create_trgb(1, r, g, b));
+		return ;
+	if (l == 'C')
+	{
+		data->cr = r;
+		data->cg = g;
+		data->cb = b;
+	}
+	else
+	{
+		data->fr = r;
+		data->fg = g;
+		data->fb = b;
+	}
 }
 
 char	**ft_addb(char **map, char *line)
@@ -73,6 +79,27 @@ char	**ft_addb(char **map, char *line)
 	return (ret);
 }
 
+int	name_check(char *arg)
+{
+	int	i;
+	int	len;
+
+	len = ft_strlen(arg);
+	i = 0;
+	if (!ft_strncmp(arg, ".cub", 4))
+		return (0);
+	if (arg[i] == '.' || arg[i] == '\0')
+		return (0);
+	while (i < len - 4)
+	{
+		arg++;
+		i++;
+	}
+	if (!ft_strncmp(arg, ".cub", (len - 1)))
+		return (1);
+	return (0);
+}
+
 t_data	*get_data(char *file)
 {
 	int		fd;
@@ -82,7 +109,7 @@ t_data	*get_data(char *file)
 
 	i = 0;
 	fd = open(file, O_RDONLY);
-	if (fd < 0)
+	if (fd == 1 || fd == -1)
 		return (NULL);
 	ret = malloc(sizeof(t_data));
 	if (!ret)
@@ -127,11 +154,9 @@ t_data	*get_data(char *file)
 		}
 		else if (ft_strncmp(line, "F ", 2) == 0)
 		{
-			if (!ret->f)
+			if (!ret->fr)
 			{
-				ret->f = get_trgb(line + 2);
-				if (ret->f == -1)
-					error(line);
+				get_trgb(line + 2, ret, line[0]);
 			}
 			else
 				error(line);
@@ -139,11 +164,9 @@ t_data	*get_data(char *file)
 		}
 		else if (ft_strncmp(line, "C ", 2) == 0)
 		{
-			if (!ret->c)
+			if (!ret->cr)
 			{
-				ret->c = get_trgb(line + 2);
-				if (ret->c == -1)
-					error(line);
+				get_trgb(line + 2, ret, line[0]);
 			}
 			else
 				error(line);

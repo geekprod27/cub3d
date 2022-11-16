@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:09:19 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/15 17:46:00 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/16 15:59:49 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,15 +164,16 @@ void	raycasting_loop(t_data *tex, t_mlx *mlx)
 		//diff colours for walls
 		int	colour;
 		// if (tex->map[rays->mapy][rays->mapx] == '1')
-		colour = create_trgb(1, 0, 255, 0);
+		colour = 255;
 		// else
 		// 	colour = create_trgb(1, 255, 0, 0);
 		
 		if (rays->side == 1)
-			colour = create_trgb(1, 0, 255 /2, 0);
+			colour = 255;
 		// print_data(tex);
 		// print_ray(rays);
-		verline(x, rays->drawstart, rays->drawend, colour, mlx);
+		verline(x, rays->drawstart, rays->drawend, colour, mlx, tex);
 		x++;
 	}
+	mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_win, mlx->mlx_img, 0, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 12:01:19 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/15 17:28:59 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:28:40 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	uno(t_mlx *ptr, t_point *un, t_point *de, t_point d)
 	d.y = d.y * 2;
 	while (1)
 	{
-		mlx_pixel_put(ptr->mlx_ptr, ptr->mlx_win, un->x, un->y, ptr->color);
+		ptr->mlx_imgadr[(un->y * ptr->line_size + un->x * (ptr->bitperpixel / 8))] = ptr->color;
+		//mlx_pixel_put(ptr->mlx_ptr, ptr->mlx_win, un->x, un->y, ptr->color);
 		un->x = un->x + 1;
 		if (un->x == de->x)
 			break ;
@@ -43,7 +44,8 @@ void	deux(t_mlx *ptr, t_point *un, t_point *de, t_point d)
 	d.x = d.x * 2;
 	while (1)
 	{
-		mlx_pixel_put(ptr->mlx_ptr, ptr->mlx_win, un->x, un->y, ptr->color);
+		ptr->mlx_imgadr[(un->y * ptr->line_size + un->x * (ptr->bitperpixel / 8))] = ptr->color;
+		//mlx_pixel_put(ptr->mlx_ptr, ptr->mlx_win, un->x, un->y, ptr->color);
 		un->y = un->y + 1;
 		if (un->y == de->y)
 			break ;
@@ -65,7 +67,8 @@ void	troi(t_mlx *ptr, t_point *un, t_point *de, t_point d)
 	d.y = d.y * 2;
 	while (1)
 	{
-		mlx_pixel_put(ptr->mlx_ptr, ptr->mlx_win, un->x, un->y, ptr->color);
+		ptr->mlx_imgadr[(un->y * ptr->line_size + un->x * (ptr->bitperpixel / 8))] = ptr->color;
+		//mlx_pixel_put(ptr->mlx_ptr, ptr->mlx_win, un->x, un->y, ptr->color);
 		un->x = un->x + 1;
 		if (un->x == de->x)
 			break ;
@@ -87,7 +90,8 @@ void	quatre(t_mlx *ptr, t_point *un, t_point *de, t_point d)
 	d.x = d.x * 2;
 	while (1)
 	{
-		mlx_pixel_put(ptr->mlx_ptr, ptr->mlx_win, un->x, un->y, ptr->color);
+		ptr->mlx_imgadr[(un->y * ptr->line_size + un->x * (ptr->bitperpixel / 8))] = ptr->color;
+		//mlx_pixel_put(ptr->mlx_ptr, ptr->mlx_win, un->x, un->y, ptr->color);
 		un->y = un->y - 1;
 		if (un->y == de->y)
 			break ;
@@ -104,7 +108,8 @@ void	cinq(t_mlx *ptr, t_point *un, t_point *de)
 {
 	while (un->x != de->x)
 	{
-		mlx_pixel_put(ptr->mlx_ptr, ptr->mlx_win, un->x, un->y, ptr->color);
+		ptr->mlx_imgadr[(un->y * ptr->line_size + un->x * (ptr->bitperpixel / 8))] = ptr->color;
+		//mlx_pixel_put(ptr->mlx_ptr, ptr->mlx_win, un->x, un->y, ptr->color);
 		un->x = un->x + 1;
 	}
 }
@@ -118,8 +123,9 @@ void	sis(t_mlx *ptr, t_point *un, t_point *de, t_point d)
 		{
 			while (un->y != de->y)
 			{
-				mlx_pixel_put(ptr->mlx_ptr, ptr->mlx_win, un->x, un->y,
-					ptr->color);
+				ptr->mlx_imgadr[(un->y * ptr->line_size + un->x * (ptr->bitperpixel / 8))] = ptr->color;
+				//mlx_pixel_put(ptr->mlx_ptr, ptr->mlx_win, un->x, un->y,
+				//	ptr->color);
 				un->y = un->y + 1;
 			}
 		}
@@ -127,8 +133,9 @@ void	sis(t_mlx *ptr, t_point *un, t_point *de, t_point d)
 		{
 			while (un->y != de->y)
 			{
-				mlx_pixel_put(ptr->mlx_ptr, ptr->mlx_win, un->x, un->y,
-					ptr->color);
+				ptr->mlx_imgadr[(un->y * ptr->line_size + un->x * (ptr->bitperpixel / 8))] = ptr->color;
+				//mlx_pixel_put(ptr->mlx_ptr, ptr->mlx_win, un->x, un->y,
+				//	ptr->color);
 				un->y = un->y - 1;
 			}
 		}
@@ -160,19 +167,48 @@ void	seg(t_point un, t_point de, t_mlx *ptr)
 		seg(de, un, ptr);
 	else
 		sis(ptr, &un, &de, d);
-	mlx_pixel_put(ptr->mlx_ptr, ptr->mlx_win, de.x, de.y, ptr->color);
+	ptr->mlx_imgadr[(de.y * ptr->line_size + de.x * (ptr->bitperpixel / 8))] = ptr->color;
+	//mlx_pixel_put(ptr->mlx_ptr, ptr->mlx_win, de.x, de.y, ptr->color);
 }
 
-void	verline(int x, int strat, int end, int color, t_mlx	*mlx)
+void	verline(int x, int strat, int end, int color, t_mlx	*mlx, t_data *data)
 {
-	t_point	un;
-	t_point	de;
+	//t_point	un;
+	//t_point	de;
+	int		d;
 
+	d = 0;
 	//fprintf(stderr, "%d %d %d %d\n", x, strat, end, color);
-	un.x = x;
-	de.x = x;
-	un.y = strat;
-	de.y = end;
+	while (d <= 1000)
+	{
+		if (d < strat)
+		{
+			(mlx->mlx_imgadr[(d * mlx->line_size + x * (mlx->bitperpixel / 8))]) = data->cb;
+			(mlx->mlx_imgadr[(d * mlx->line_size + x * (mlx->bitperpixel / 8))+ 1]) = data->cg;
+			(mlx->mlx_imgadr[(d * mlx->line_size + x * (mlx->bitperpixel / 8))+ 2]) = data->cr;
+			(mlx->mlx_imgadr[(d * mlx->line_size + x * (mlx->bitperpixel / 8))+ 3]) = 1;
+		}
+		else if (d >= strat && d <= end)
+		{
+			(mlx->mlx_imgadr[(d * mlx->line_size + x * (mlx->bitperpixel / 8))]) = 0;
+			(mlx->mlx_imgadr[(d * mlx->line_size + x * (mlx->bitperpixel / 8))+ 1]) = 255;
+			(mlx->mlx_imgadr[(d * mlx->line_size + x * (mlx->bitperpixel / 8)) + 2]) = 0;
+			(mlx->mlx_imgadr[(d * mlx->line_size + x * (mlx->bitperpixel / 8)) + 3]) = 1;
+		}
+		else if (d > end)
+		{
+			(mlx->mlx_imgadr[(d * mlx->line_size + x * (mlx->bitperpixel / 8))]) = data->fb;
+			(mlx->mlx_imgadr[(d * mlx->line_size + x * (mlx->bitperpixel / 8)) + 1]) = data->fg;
+			(mlx->mlx_imgadr[(d * mlx->line_size + x * (mlx->bitperpixel / 8)) + 2]) = data->fr;
+			(mlx->mlx_imgadr[(d * mlx->line_size + x * (mlx->bitperpixel / 8)) + 3]) = 1;
+		}
+		d++;
+	}
+	// un.x = x;
+	// de.x = x;
+	// un.y = strat;
+	// de.y = end;
 	mlx->color = color;
-	seg(un, de, mlx);
+	(void) data;
+	//seg(un, de, mlx);
 }
