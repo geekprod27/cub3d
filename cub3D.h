@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/16 17:32:49 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/16 17:44:32 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct s_tex
 	int		bitperpixel;
 	int		line_size;
 	int		endian;
+	int		texwidth;
+	int		texheight;
 }	t_tex;
 
 
@@ -111,7 +113,7 @@ enum {
 	ON_DESTROY = 17
 };
 
-t_data		*get_data(char *file);
+t_data		*get_data(char *file, t_mlx *mlx);
 int			name_check(char *arg);
 int			verifmap(char **map, t_data *data);
 void		replace_space(char **map);

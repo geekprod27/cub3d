@@ -39,7 +39,7 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 
 $(MLX):
 	@printf "\e[2K\r-[\033[1mLIB\033[0m] \033[1;33mMLX\033[0m [${PROGRESS}]"
-	@make --no-print-directory -C ./mlx  > /dev/null
+	@make --no-print-directory -C ./mlx  > /dev/null 2> /dev/null
 	@printf "\e[2K\r-[\033[1mLIB\033[0m] \033[1;32mMLX\033[0m [${CHECK}]\n"
 
 $(LIBFT):
@@ -50,15 +50,20 @@ $(LIBFT):
 clean:
 	@printf "\e[2K\r- \033[36mClean des objs\033[0m [${PROGRESS}]"
 	@rm -rf $(OBJ_PATH)
-	@make clean --no-print-directory -C ./mlx
-	@$(MAKE) clean --no-print-directory -C ./libft
 	@printf "\e[2K\r- \033[31mClean des objs\033[0m [${CHECK}]\n"
+	@printf "\e[2K\r- \033[36mClean MLX\033[0m [${PROGRESS}]"
+	@make clean --no-print-directory -C ./mlx
+	@printf "\e[2K\r- \033[31mClean MLX\033[0m [${CHECK}]\n"
+	@$(MAKE) clean --no-print-directory -C ./libft
 
 fclean:	clean
 	@printf "\e[2K\r- \033[36mClean de lexecutable\033[0m [${PROGRESS}]"
 	@rm -f $(NAME)
-	@$(MAKE) fclean --no-print-directory -C ./libft
 	@printf "\e[2K\r- \033[31mClean de lexecutable\033[0m [${CHECK}]\n"
+	@printf "\e[2K\r- \033[36mFclean libft\033[0m [${PROGRESS}]"
+	@$(MAKE) fclean --no-print-directory -C ./libft
+	@printf "\e[2K\r- \033[31mFclean libft\033[0m [${CHECK}]\n"
+	@printf "\e[2K\r \033[1;32mFclean all\033[0m [${CHECK}]\n"
 
 re:	fclean
 	@make all

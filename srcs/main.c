@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 14:26:08 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/16 16:52:42 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/16 17:45:21 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,12 @@ int	main(int argc, char **argv)
 		return (1);
 	if (!name_check(argv[1]))
 		return (1);
+	mlx = malloc(sizeof(t_mlx));
+	mlx->mlx_ptr = mlx_init();
+	mlx->mlx_win = mlx_new_window(mlx->mlx_ptr, WIDTH, HEIGHT, "cub3D");
+	mlx->mlx_img = mlx_new_image(mlx->mlx_ptr, WIDTH, HEIGHT);
 	/*get toutes les daata du fichier*/
-	tex = get_data(argv[1]);
+	tex = get_data(argv[1], mlx);
 	if (!tex)
 	{
 		ft_putstr_fd("Error\n", 2);
@@ -70,10 +74,6 @@ int	main(int argc, char **argv)
 		exit(2);
 	}
 	replace_space(tex->map);
-	mlx = malloc(sizeof(t_mlx));
-	mlx->mlx_ptr = mlx_init();
-	mlx->mlx_win = mlx_new_window(mlx->mlx_ptr, WIDTH, HEIGHT, "cub3D");
-	mlx->mlx_img = mlx_new_image(mlx->mlx_ptr, WIDTH, HEIGHT);
 	mlx->mlx_imgadr = mlx_get_data_addr(mlx->mlx_img, &mlx->bitperpixel, &mlx->line_size, &mlx->endian);
 	tex->mlx = mlx;
 	mlx_hook(mlx->mlx_win, ON_KEYDOWN, 1L << 0, keydown, tex);

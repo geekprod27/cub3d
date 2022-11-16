@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 11:51:25 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/16 16:55:57 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/16 18:19:52 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,18 @@ int	name_check(char *arg)
 	return (0);
 }
 
-t_data	*get_data(char *file)
+void	openxpm(t_mlx *mlx, char *file, t_tex *tex, int i)
+{
+	tex[i].img = mlx_xpm_file_to_image(mlx->mlx_ptr, ft_strtrim(file, "\n"), &(tex[i].texwidth), &(tex[i].texheight));
+	if (!tex[i].img)
+	{
+		printf("Error\n");
+		exit(1);
+	}
+	tex[i].imgadr = mlx_get_data_addr(tex[i].img, &tex[i].bitperpixel, &tex[i].line_size, &tex[i].endian);
+}
+
+t_data	*get_data(char *file, t_mlx *mlx)
 {
 	int		fd;
 	char	*line;
@@ -123,7 +134,7 @@ t_data	*get_data(char *file)
 		if (ft_strncmp(line, "NO ", 3) == 0)
 		{
 			if (!ret->no)
-				ret->no = ft_strdup(line + 3);
+				openxpm(mlx, line + 3, ret->tex, 0);
 			else
 				error(line);
 			i++;
@@ -131,7 +142,7 @@ t_data	*get_data(char *file)
 		else if (ft_strncmp(line, "SO ", 3) == 0)
 		{
 			if (!ret->so)
-				ret->so = ft_strdup(line + 3);
+				openxpm(mlx, line + 3, ret->tex, 1);
 			else
 				error(line);
 			i++;
@@ -139,7 +150,7 @@ t_data	*get_data(char *file)
 		else if (ft_strncmp(line, "WE ", 3) == 0)
 		{
 			if (!ret->we)
-				ret->we = ft_strdup(line + 3);
+				openxpm(mlx, line + 3, ret->tex, 2);
 			else
 				error(line);
 			i++;
@@ -147,7 +158,7 @@ t_data	*get_data(char *file)
 		else if (ft_strncmp(line, "EA ", 3) == 0)
 		{
 			if (!ret->ea)
-				ret->ea = ft_strdup(line + 3);
+				openxpm(mlx, line + 3, ret->tex, 3);
 			else
 				error(line);
 			i++;
