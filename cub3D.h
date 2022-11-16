@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/15 17:35:15 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/16 14:50:16 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ void		verline(int x, int strat, int end, int color, t_mlx	*mlx);
 
 void		avancer(t_data *data);
 void		reculer(t_data *data);
+void		droite(t_data *data);
+void		gauche(t_data *data);
 void		rotl(t_data	*data);
 void		rotr(t_data	*data);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 14:26:08 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/15 15:47:42 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/16 14:49:17 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@ int	redcross(void *param)
 {
 	(void) param;
 	exit(0);
+}
+
+void	reaffiche(t_data *data)
+{
+	mlx_clear_window(data->mlx->mlx_ptr, data->mlx->mlx_win);
+	raycasting_loop(data, data->mlx);
 }
 
 int	keydown(int keycode, void *param)
@@ -30,13 +36,14 @@ int	keydown(int keycode, void *param)
 	else if (keycode == 115)
 		reculer(data);
 	else if (keycode == 97)
-		printf("a down\n");
+		gauche(data);
 	else if (keycode == 100)
-		printf("d down\n");
+		droite(data);
 	else if (keycode == 65361)
 		rotl(data);
 	else if (keycode == 65363)
 		rotr(data);
+	reaffiche(data);
 	return (0);
 }
 
