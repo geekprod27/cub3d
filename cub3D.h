@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/16 14:50:16 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/16 17:32:49 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,23 @@ struct s_mlx
 {
 	void	*mlx_ptr;
 	void	*mlx_win;
+	void	*mlx_img;
+	char	*mlx_imgadr;
+	int		bitperpixel;
+	int		line_size;
+	int		endian;
 	int		color;
 };
+
+typedef struct s_tex
+{
+	void	*img;
+	char	*imgadr;
+	int		bitperpixel;
+	int		line_size;
+	int		endian;
+}	t_tex;
+
 
 typedef struct s_data
 {
@@ -39,8 +54,12 @@ typedef struct s_data
 	char	*so;
 	char	*we;
 	char	*ea;
-	int		f;
-	int		c;
+	int		fr;
+	int		fg;
+	int		fb;
+	int		cr;
+	int		cg;
+	int		cb;
 	char	**map;
 	double	posx;
 	double	posy;
@@ -49,6 +68,7 @@ typedef struct s_data
 	double	dirx;
 	double	diry;
 	char	spawn;
+	t_tex	tex[3];
 	t_mlx	*mlx;
 }	t_data;
 
@@ -92,13 +112,14 @@ enum {
 };
 
 t_data		*get_data(char *file);
+int			name_check(char *arg);
 int			verifmap(char **map, t_data *data);
 void		replace_space(char **map);
 void		error(char *d);
 int			create_trgb(int t, int r, int g, int b);
 void		init_dir_plan_time(t_data *tex);
 void		raycasting_loop(t_data *tex, t_mlx *mlx);
-void		verline(int x, int strat, int end, int color, t_mlx	*mlx);
+void		verline(int x, int strat, int end, int color, t_mlx	*mlx, t_data *data);
 
 //		MOUVEMENT
 
