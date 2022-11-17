@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 12:01:19 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/16 16:28:40 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/17 11:43:44 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,7 @@ void	verline(int x, int strat, int end, int color, t_mlx	*mlx, t_data *data)
 		else if (d >= strat && d <= end)
 		{
 			(mlx->mlx_imgadr[(d * mlx->line_size + x * (mlx->bitperpixel / 8))]) = 0;
-			(mlx->mlx_imgadr[(d * mlx->line_size + x * (mlx->bitperpixel / 8))+ 1]) = 255;
+			(mlx->mlx_imgadr[(d * mlx->line_size + x * (mlx->bitperpixel / 8))+ 1]) = 125;
 			(mlx->mlx_imgadr[(d * mlx->line_size + x * (mlx->bitperpixel / 8)) + 2]) = 0;
 			(mlx->mlx_imgadr[(d * mlx->line_size + x * (mlx->bitperpixel / 8)) + 3]) = 1;
 		}

@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:09:19 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/16 15:59:49 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/17 12:43:11 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,4 +176,5 @@ void	raycasting_loop(t_data *tex, t_mlx *mlx)
 		x++;
 	}
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_win, mlx->mlx_img, 0, 0);
+	free(rays);
 }

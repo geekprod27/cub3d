@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 11:51:25 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/16 18:19:52 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/17 12:41:55 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ char	**ft_addb(char **map, char *line)
 		}
 		ret[i] = line;
 		ret[i + 1] = NULL;
+		free(map);
 		return (ret);
 	}
 	ret = malloc(sizeof(char *) * 2);
@@ -102,7 +103,11 @@ int	name_check(char *arg)
 
 void	openxpm(t_mlx *mlx, char *file, t_tex *tex, int i)
 {
-	tex[i].img = mlx_xpm_file_to_image(mlx->mlx_ptr, ft_strtrim(file, "\n"), &(tex[i].texwidth), &(tex[i].texheight));
+	char	*filed;
+
+	filed = ft_strtrim(file, "\n");
+	tex[i].img = mlx_xpm_file_to_image(mlx->mlx_ptr, filed, &(tex[i].texwidth), &(tex[i].texheight));
+	free(filed);
 	if (!tex[i].img)
 	{
 		printf("Error\n");
@@ -126,6 +131,12 @@ t_data	*get_data(char *file, t_mlx *mlx)
 	if (!ret)
 		return (NULL);
 	ret->map = NULL;
+	ret->c = 0;
+	ret->f = 0;
+	ret->ea = NULL;
+	ret->no = NULL;
+	ret->so = NULL;
+	ret->we = NULL;
 	while (i < 6)
 	{
 		line = get_next_line(fd);
@@ -165,8 +176,9 @@ t_data	*get_data(char *file, t_mlx *mlx)
 		}
 		else if (ft_strncmp(line, "F ", 2) == 0)
 		{
-			if (!ret->fr)
+			if (!ret->f)
 			{
+				ret->f = 1;
 				get_trgb(line + 2, ret, line[0]);
 			}
 			else
@@ -175,9 +187,10 @@ t_data	*get_data(char *file, t_mlx *mlx)
 		}
 		else if (ft_strncmp(line, "C ", 2) == 0)
 		{
-			if (!ret->cr)
+			if (!ret->c)
 			{
 				get_trgb(line + 2, ret, line[0]);
+				ret->c = 1;
 			}
 			else
 				error(line);

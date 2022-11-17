@@ -6,16 +6,48 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 14:26:08 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/16 17:45:21 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/17 12:38:57 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
+void	freetab(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}
+
+void	ft_exit(t_data	*data, int exi)
+{
+	fprintf(stderr, "ft_exit\n");
+	freetab(data->map);
+	mlx_destroy_image(data->mlx->mlx_ptr, data->mlx->mlx_img);
+	mlx_destroy_image(data->mlx->mlx_ptr, data->tex[0].img);
+	mlx_destroy_image(data->mlx->mlx_ptr, data->tex[1].img);
+	mlx_destroy_image(data->mlx->mlx_ptr, data->tex[2].img);
+	mlx_destroy_image(data->mlx->mlx_ptr, data->tex[3].img);
+	mlx_destroy_window(data->mlx->mlx_ptr, data->mlx->mlx_win);
+	free(data->mlx->mlx_ptr);
+	free(data->mlx);
+	free(data);
+	exit(exi);
+}
+
 int	redcross(void *param)
 {
-	(void) param;
-	exit(0);
+	t_data	*data;
+
+	data = param;
+	ft_exit(data, 0);
+	return (0);
 }
 
 int	keydown(int keycode, void *param)
@@ -24,7 +56,7 @@ int	keydown(int keycode, void *param)
 
 	data = param;
 	if (keycode == 65307)
-		exit(0);
+		ft_exit(data, 0);
 	if (keycode == 119)
 		avancer(data);
 	else if (keycode == 115)

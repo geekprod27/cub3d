@@ -1,7 +1,7 @@
-NO textures/bluewall.xpm
-SO textures/greywall.xpm
-WE textures/halo/forerunner900.xpm
-EA textures/bluelight.xpm
+NO ./texture/bluestone.xpm
+SO ./texture/colorstone.xpm
+WE ./texture/redbrick.xpm
+EA ./texture/wood.xpm
 
 F 192,192,192
 C 15,14,49

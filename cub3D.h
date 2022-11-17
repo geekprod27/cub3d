@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/16 18:34:03 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/17 12:28:17 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include "mlx/mlx.h"
 # include "libft/libft.h"
 
-# define MOVESPEED 0.5
+# define MOVESPEED 0.2
 # define ROTSPEED 0.1
 # define HEIGHT 1000
 # define WIDTH 1000
@@ -56,6 +56,8 @@ typedef struct s_data
 	char	*so;
 	char	*we;
 	char	*ea;
+	int		f;
+	int		c;
 	int		fr;
 	int		fg;
 	int		fb;
@@ -70,7 +72,7 @@ typedef struct s_data
 	double	dirx;
 	double	diry;
 	char	spawn;
-	t_tex	tex[3];
+	t_tex	tex[4];
 	t_mlx	*mlx;
 }	t_data;
 
