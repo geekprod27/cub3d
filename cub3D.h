@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/17 12:28:17 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/17 14:44:03 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include "mlx/mlx.h"
 # include "libft/libft.h"
 
-# define MOVESPEED 0.2
+# define MOVESPEED 0.1
 # define ROTSPEED 0.1
 # define HEIGHT 1000
 # define WIDTH 1000
@@ -52,10 +52,6 @@ typedef struct s_tex
 
 typedef struct s_data
 {
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
 	int		f;
 	int		c;
 	int		fr;
@@ -119,11 +115,12 @@ t_data		*get_data(char *file, t_mlx *mlx);
 int			name_check(char *arg);
 int			verifmap(char **map, t_data *data);
 void		replace_space(char **map);
-void		error(char *d);
+void		error(char *d, t_data *data);
 int			create_trgb(int t, int r, int g, int b);
 void		init_dir_plan_time(t_data *tex);
 void		raycasting_loop(t_data *tex, t_mlx *mlx);
 void		verline(int x, int strat, int end, int color, t_mlx	*mlx, t_data *data);
+void		ft_exit(t_data	*data, int exi);
 
 //		MOUVEMENT
 
