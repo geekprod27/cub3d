@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 11:51:25 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/18 15:14:59 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/18 15:42:12 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,9 @@ char	**add(char **map, int i, char *line)
 
 char	**ft_addb(char **map, char *line)
 {
-	int		len;
 	int		i;
 	char	**ret;
 
-	len = 0;
 	i = 0;
 	if (map)
 		return (add(map, i, line));

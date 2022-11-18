@@ -22,14 +22,14 @@ OBJ_NAME = $(SRC_NAME:.c=.o)
 SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
 
-CC	= gcc
-CFLAGS	= -Wall -Wextra -Werror -g -lm
+CC	= cc
+CFLAGS	= -Wall -Wextra -Werror -g
 
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(MLX) $(OBJ) cub3D.h
 	@printf "\e[2K\r- Build \033[1;33m${NAME}\033[0m [${PROGRESS}]"
-	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(MLX) $(LIBFT) -lXext -lX11
+	@$(CC) $(CFLAGS) -lm $(OBJ) -o $(NAME) $(MLX) $(LIBFT) -lXext -lX11
 	@printf "\e[2K\r- Build \033[1;32m${NAME}\033[0m [${CHECK}]\n"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
