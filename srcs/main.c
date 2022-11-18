@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 14:26:08 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/18 15:58:13 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/18 17:29:19 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ int	reaf(void *param)
 		|| data->olddirx != data->dirx || data->olddiry != data->diry
 		|| data->oldplanx != data->planx || data->oldplany != data->plany)
 	{
-		fprintf(stderr, "posx : %f posy : %f\n", data->posx, data->posy);
+		// fprintf(stderr, "posx : %f posy : %f\n", data->posx, data->posy);
 		data->oldposx = data->posx;
 		data->oldposy = data->posy;
 		data->olddirx = data->dirx;

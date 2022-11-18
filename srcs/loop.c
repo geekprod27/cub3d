@@ -6,7 +6,7 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:09:19 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/18 15:57:25 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/18 17:34:17 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,21 +170,23 @@ void	raycasting_loop(t_data *tex, t_mlx *mlx)
 			if (rays->drawend >= HEIGHT)
 				rays->drawend = HEIGHT - 1;
 		}
-		//diff colours for walls
-		// int	colour;
-		// if (tex->map[rays->mapy][rays->mapx] == '1')
-		// colour = create_trgb(1, 0, 255, 0);
-		// else
-		// 	colour = create_trgb(1, 255, 0, 0);
-		
-		// if (rays->side == 1)
-		// 	colour = create_trgb(1, 0, 255 /2, 0);
-		// print_data(tex);
-		// print_ray(rays);
-
-		// verline(x, rays->drawstart, rays->drawend, colour, mlx);
-		// (void)colour;
-		texture(tex, rays, 0, mlx, x);
+		//vertical x
+		if (rays->side == 0)
+		{
+			if (rays->mapx < tex->posx)
+				texture(tex, rays, 0, mlx, x);
+			else
+				texture(tex, rays, 1, mlx, x);
+		}
+		//horizontal y
+		else
+		{
+			if (rays->mapy < tex->posy)
+				texture(tex, rays, 2, mlx, x);
+			else
+				texture(tex, rays, 3, mlx, x);
+		}
 		x++;
 	}
+	mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_win, mlx->mlx_img, 0, 0);
 }
