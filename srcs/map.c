@@ -6,11 +6,40 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 15:43:01 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/15 17:32:57 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/18 15:28:26 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
+
+int	maps(t_data *data, int x, int y, int *havespwn)
+{
+	if (data->map[x][y] == '0' || data->map[x][y] == 'N'
+		|| data->map[x][y] == 'S' || data->map[x][y] == 'E'
+		|| data->map[x][y] == 'W')
+	{
+		if (x == 0 || !data->map[x + 1] || y == 0 || !data->map[x][y + 1]
+			|| data->map[x][y + 1] == '\n')
+			return (0);
+		if (data->map[x - 1][y] == ' ' || data->map[x + 1][y] == ' '
+				|| data->map[x][y - 1] == ' ' || data->map[x][y + 1] == ' '
+				|| data->map[x][y + 1] == '\n')
+			return (0);
+	}
+	if (data->map[x][y] == 'N' || data->map[x][y] == 'S'
+		|| data->map[x][y] == 'E' || data->map[x][y] == 'W')
+	{
+		if (*havespwn)
+			return (0);
+		*havespwn = 1;
+		data->posx = y + 0.5;
+		data->posy = x + 0.5;
+		data->oldposx = y + 0.5;
+		data->oldposy = x + 0.5;
+		data->spawn = data->map[x][y];
+	}
+	return (1);
+}
 
 int	verifmap(char **map, t_data *data)
 {
@@ -27,29 +56,9 @@ int	verifmap(char **map, t_data *data)
 		y = 0;
 		while (map[x][y])
 		{
-			//printf("x = %d, y = %d\n", x, y);
-			if (map[x][y] == '0' || map[x][y] == 'N' || map[x][y] == 'S'
-				|| map[x][y] == 'E' || map[x][y] == 'W')
-			{
-				if (x == 0 || !map[x + 1] || y == 0 || !map[x][y + 1]
-					|| map[x][y + 1] == '\n')
-					return (0);
-				if (map[x - 1][y] == ' ' || map[x + 1][y] == ' '
-					|| map[x][y - 1] == ' ' || map[x][y + 1] == ' '
-					|| map[x][y + 1] == '\n')
-					return (0);
-			}
-			if (map[x][y] == 'N' || map[x][y] == 'S' || map[x][y] == 'E'
-				|| map[x][y] == 'W')
-			{
-				if (havespwn)
-					return (0);
-				havespwn = 1;
-				data->posx = y + 0.5;
-				data->posy = x + 0.5;
-				data->spawn = map[x][y];
-			}
-			else if (map[x][y] != '1' && map[x][y] != ' ' && map[x][y] != '\n'
+			if (!maps(data, x, y, &havespwn))
+				return (0);
+			if (map[x][y] != '1' && map[x][y] != ' ' && map[x][y] != '\n'
 				&& map[x][y] != '0')
 				return (0);
 			y++;

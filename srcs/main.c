@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 14:26:08 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/18 15:17:41 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/18 15:40:29 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,25 @@ void	freetab(char **map)
 void	ft_exit(t_data	*data, int exi)
 {
 	fprintf(stderr, "ft_exit\n");
-	freetab(data->map);
-	mlx_destroy_image(data->mlx->mlx_ptr, data->mlx->mlx_img);
-	mlx_destroy_image(data->mlx->mlx_ptr, data->tex[0].img);
-	mlx_destroy_image(data->mlx->mlx_ptr, data->tex[1].img);
-	mlx_destroy_image(data->mlx->mlx_ptr, data->tex[2].img);
-	mlx_destroy_image(data->mlx->mlx_ptr, data->tex[3].img);
-	mlx_destroy_window(data->mlx->mlx_ptr, data->mlx->mlx_win);
-	free(data->mlx->mlx_ptr);
+	if (data->map)
+		freetab(data->map);
+	if (data->mlx->mlx_img)
+		mlx_destroy_image(data->mlx->mlx_ptr, data->mlx->mlx_img);
+	if (data->tex[0].img)
+		mlx_destroy_image(data->mlx->mlx_ptr, data->tex[0].img);
+	if (data->tex[1].img)
+		mlx_destroy_image(data->mlx->mlx_ptr, data->tex[1].img);
+	if (data->tex[2].img)
+		mlx_destroy_image(data->mlx->mlx_ptr, data->tex[2].img);
+	if (data->tex[3].img)
+		mlx_destroy_image(data->mlx->mlx_ptr, data->tex[3].img);
+	if (data->mlx->mlx_win)
+		mlx_destroy_window(data->mlx->mlx_ptr, data->mlx->mlx_win);
+	if (data->mlx->mlx_ptr)
+	{
+		mlx_destroy_display(data->mlx->mlx_ptr);
+		free(data->mlx->mlx_ptr);
+	}
 	free(data->mlx);
 	free(data);
 	exit(exi);
@@ -58,26 +69,79 @@ int	keydown(int keycode, void *param)
 	if (keycode == 65307)
 		ft_exit(data, 0);
 	if (keycode == 119)
-		avancer(data);
+		data->w = 1;
 	else if (keycode == 115)
-		reculer(data);
+		data->s = 1;
 	else if (keycode == 97)
-		gauche(data);
+		data->a = 1;
 	else if (keycode == 100)
-		droite(data);
+		data->d = 1;
 	else if (keycode == 65361)
-		rotl(data);
+		data->ga = 1;
 	else if (keycode == 65363)
-		rotr(data);
-	raycasting_loop(data, data->mlx);
+		data->dr = 1;
 	return (0);
 }
 
-void	error(char *d)
+int	keyup(int keycode, void *param)
+{
+	t_data	*data;
+
+	data = param;
+	if (keycode == 119)
+		data->w = 0;
+	else if (keycode == 115)
+		data->s = 0;
+	else if (keycode == 97)
+		data->a = 0;
+	else if (keycode == 100)
+		data->d = 0;
+	else if (keycode == 65361)
+		data->ga = 0;
+	else if (keycode == 65363)
+		data->dr = 0;
+	return (0);
+}
+
+int	reaf(void *param)
+{
+	t_data	*data;
+
+	data = param;
+	if (data->w)
+		avancer(data);
+	if (data->s)
+		reculer(data);
+	if (data->a)
+		gauche(data);
+	if (data->d)
+		droite(data);
+	if (data->dr)
+		rotr(data);
+	if (data->ga)
+		rotl(data);
+	if (data->oldposx != data->posx || data->oldposy != data->posy
+		|| data->olddirx != data->dirx || data->olddiry != data->diry
+		|| data->oldplanx != data->planx || data->oldplany != data->plany)
+	{
+		fprintf(stderr, "posx : %f posy : %f\n", data->posx, data->posy);
+		data->oldposx = data->posx;
+		data->oldposy = data->posy;
+		data->olddirx = data->dirx;
+		data->olddiry = data->diry;
+		data->oldplanx = data->planx;
+		data->oldplany = data->plany;
+		raycasting_loop(data, data->mlx);
+	}
+	return (0);
+}
+
+void	error(char *d, t_data *data)
 {
 	ft_putstr_fd("Error\nMultiple ID :\n", 2);
 	ft_putstr_fd(d, 2);
-	exit(3);
+	free(d);
+	ft_exit(data, 3);
 }
 
 int	main(int argc, char **argv)
@@ -90,26 +154,40 @@ int	main(int argc, char **argv)
 	if (!name_check(argv[1]))
 		return (1);
 	mlx = malloc(sizeof(t_mlx));
+	if (!mlx)
+		return (0);
 	mlx->mlx_ptr = mlx_init();
-	mlx->mlx_win = mlx_new_window(mlx->mlx_ptr, WIDTH, HEIGHT, "cub3D");
-	mlx->mlx_img = mlx_new_image(mlx->mlx_ptr, WIDTH, HEIGHT);
 	/*get toutes les daata du fichier*/
 	tex = get_data(argv[1], mlx);
 	if (!tex)
 	{
 		ft_putstr_fd("Error\n", 2);
+		if (mlx->mlx_img)
+			mlx_destroy_image(mlx->mlx_ptr, mlx->mlx_img);
+		if (mlx->mlx_win)
+			mlx_destroy_window(mlx->mlx_ptr, mlx->mlx_win);
+		if (mlx->mlx_ptr)
+		{
+			mlx_destroy_display(mlx->mlx_ptr);
+			free(mlx->mlx_ptr);
+		}
+		if (mlx)
+			free(mlx);
 		exit(2);
 	}
 	if (!verifmap(tex->map, tex))
 	{
 		ft_putstr_fd("Error\nMap invalide", 2);
-		exit(2);
+		ft_exit(tex, 2);
 	}
 	replace_space(tex->map);
+	mlx->mlx_win = mlx_new_window(mlx->mlx_ptr, WIDTH, HEIGHT, "cub3D");
+	mlx->mlx_img = mlx_new_image(mlx->mlx_ptr, WIDTH, HEIGHT);
 	mlx->mlx_imgadr = mlx_get_data_addr(mlx->mlx_img, &mlx->bitperpixel, &mlx->line_size, &mlx->endian);
-	tex->mlx = mlx;
 	mlx_hook(mlx->mlx_win, ON_KEYDOWN, 1L << 0, keydown, tex);
-	mlx_hook(mlx->mlx_win, ON_DESTROY, 0, redcross, 0);
+	mlx_hook(mlx->mlx_win, ON_KEYUP, 1L << 1, keyup, tex);
+	mlx_hook(mlx->mlx_win, ON_DESTROY, 0, redcross, tex);
+	mlx_loop_hook(mlx->mlx_ptr, reaf, tex);
 	init_dir_plan_time(tex);
 	raycasting_loop(tex, tex->mlx);
 	mlx_loop(mlx->mlx_ptr);

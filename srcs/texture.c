@@ -6,7 +6,7 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 15:13:22 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/18 15:47:56 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/18 15:51:53 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void    texture(t_data *data, t_ray *rays, int id, t_mlx *mlx, int x)
 {
-    //x coord of texture
-    double  wallx;
+	//x coord of texture
+	double  wallx;
 
-    if (rays->side == 0)
-        wallx = data->posy + rays->perpwalldist * rays->raydiry;
-    else
-        wallx = data->posx + rays->perpwalldist * rays->raydirx;
-    wallx -= floor(wallx);
+	if (rays->side == 0)
+		wallx = data->posy + rays->perpwalldist * rays->raydiry;
+	else
+		wallx = data->posx + rays->perpwalldist * rays->raydirx;
+	wallx -= floor(wallx);
 
     //txx = x coord of the texture, stays the same cause on a stripe
     int texx;

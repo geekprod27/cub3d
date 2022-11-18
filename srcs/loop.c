@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:09:19 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/18 15:31:45 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/18 15:40:13 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,10 @@ void	init_dir_plan_time(t_data *tex)
 		tex->planx = -0.66;
 		tex->diry = -1;
 	}
+	tex->olddirx = tex->dirx;
+	tex->olddiry = tex->diry;
+	tex->oldplanx = tex->planx;
+	tex->oldplany = tex->plany;
 }
 
 void	raycasting_loop(t_data *tex, t_mlx *mlx)
