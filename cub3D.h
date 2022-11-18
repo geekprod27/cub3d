@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/17 14:44:03 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/18 14:13:08 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "libft/libft.h"
 
 # define MOVESPEED 0.1
-# define ROTSPEED 0.1
+# define ROTSPEED 0.03
 # define HEIGHT 1000
 # define WIDTH 1000
 
@@ -70,6 +70,18 @@ typedef struct s_data
 	char	spawn;
 	t_tex	tex[4];
 	t_mlx	*mlx;
+	int		w;
+	int		s;
+	int		a;
+	int		d;
+	int		dr;
+	int		ga;
+	double	oldposx;
+	double	oldposy;
+	double	oldplanx;
+	double	oldplany;
+	double	olddirx;
+	double	olddiry;
 }	t_data;
 
 typedef struct s_ray

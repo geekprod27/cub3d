@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 11:51:25 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/17 15:35:51 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/18 13:42:28 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,12 @@ t_data	*get_data(char *file, t_mlx *mlx)
 	ret->tex[1].img = NULL;
 	ret->tex[2].img = NULL;
 	ret->tex[3].img = NULL;
+	ret->w = 0;
+	ret->s = 0;
+	ret->a = 0;
+	ret->d = 0;
+	ret->dr = 0;
+	ret->ga = 0;
 	while (i < 6)
 	{
 		line = get_next_line(fd);

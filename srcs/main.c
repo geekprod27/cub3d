@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 14:26:08 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/17 15:39:11 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/18 14:08:57 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,26 +69,70 @@ int	keydown(int keycode, void *param)
 	if (keycode == 65307)
 		ft_exit(data, 0);
 	if (keycode == 119)
-		avancer(data);
+		data->w = 1;
 	else if (keycode == 115)
-		reculer(data);
+		data->s = 1;
 	else if (keycode == 97)
-		gauche(data);
+		data->a = 1;
 	else if (keycode == 100)
-		droite(data);
+		data->d = 1;
 	else if (keycode == 65361)
-		rotl(data);
+		data->ga = 1;
 	else if (keycode == 65363)
-		rotr(data);
-	fprintf(stderr, "posx : %f posy : %f\n", data->posx, data->posy);
-	raycasting_loop(data, data->mlx);
+		data->dr = 1;
 	return (0);
 }
 
 int	keyup(int keycode, void *param)
 {
-	fprintf(stderr, "%d up\n", keycode);
-	(void) param;
+	t_data	*data;
+
+	data = param;
+	if (keycode == 119)
+		data->w = 0;
+	else if (keycode == 115)
+		data->s = 0;
+	else if (keycode == 97)
+		data->a = 0;
+	else if (keycode == 100)
+		data->d = 0;
+	else if (keycode == 65361)
+		data->ga = 0;
+	else if (keycode == 65363)
+		data->dr = 0;
+	return (0);
+}
+
+int	reaf(void *param)
+{
+	t_data	*data;
+
+	data = param;
+	if (data->w)
+		avancer(data);
+	if (data->s)
+		reculer(data);
+	if (data->a)
+		gauche(data);
+	if (data->d)
+		droite(data);
+	if (data->dr)
+		rotr(data);
+	if (data->ga)
+		rotl(data);
+	if (data->oldposx != data->posx || data->oldposy != data->posy
+		|| data->olddirx != data->dirx || data->olddiry != data->diry
+		|| data->oldplanx != data->planx || data->oldplany != data->plany)
+	{
+		fprintf(stderr, "posx : %f posy : %f\n", data->posx, data->posy);
+		data->oldposx = data->posx;
+		data->oldposy = data->posy;
+		data->olddirx = data->dirx;
+		data->olddiry = data->diry;
+		data->oldplanx = data->planx;
+		data->oldplany = data->plany;
+		raycasting_loop(data, data->mlx);
+	}
 	return (0);
 }
 
@@ -113,8 +157,6 @@ int	main(int argc, char **argv)
 	if (!mlx)
 		return (0);
 	mlx->mlx_ptr = mlx_init();
-	mlx->mlx_win = mlx_new_window(mlx->mlx_ptr, WIDTH, HEIGHT, "cub3D");
-	mlx->mlx_img = mlx_new_image(mlx->mlx_ptr, WIDTH, HEIGHT);
 	/*get toutes les daata du fichier*/
 	tex = get_data(argv[1], mlx);
 	if (!tex)
@@ -139,10 +181,13 @@ int	main(int argc, char **argv)
 		ft_exit(tex, 2);
 	}
 	replace_space(tex->map);
+	mlx->mlx_win = mlx_new_window(mlx->mlx_ptr, WIDTH, HEIGHT, "cub3D");
+	mlx->mlx_img = mlx_new_image(mlx->mlx_ptr, WIDTH, HEIGHT);
 	mlx->mlx_imgadr = mlx_get_data_addr(mlx->mlx_img, &mlx->bitperpixel, &mlx->line_size, &mlx->endian);
 	mlx_hook(mlx->mlx_win, ON_KEYDOWN, 1L << 0, keydown, tex);
-	mlx_hook(mlx->mlx_win, ON_KEYDOWN, 1L << 1, keyup, tex);
-	mlx_hook(mlx->mlx_win, ON_DESTROY, 0, redcross, 0);
+	mlx_hook(mlx->mlx_win, ON_KEYUP, 1L << 1, keyup, tex);
+	mlx_hook(mlx->mlx_win, ON_DESTROY, 0, redcross, tex);
+	mlx_loop_hook(mlx->mlx_ptr, reaf, tex);
 	init_dir_plan_time(tex);
 	raycasting_loop(tex, tex->mlx);
 	mlx_loop(mlx->mlx_ptr);
