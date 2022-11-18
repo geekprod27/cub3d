@@ -8,7 +8,8 @@ SRC_NAME =	main.c 			\
 			map.c			\
 			move.c			\
 			loop.c			\
-			seg.c
+			seg.c			\
+			texture.c
 
 MLX = mlx/libmlx.a
 LIBFT = ./libft/libft.a
@@ -22,11 +23,11 @@ SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
 
 CC	= gcc
-CFLAGS	= -Wall -Wextra -Werror -g
+CFLAGS	= -Wall -Wextra -Werror -g -lm
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(MLX) $(OBJ)
+$(NAME): $(LIBFT) $(MLX) $(OBJ) cub3D.h
 	@printf "\e[2K\r- Build \033[1;33m${NAME}\033[0m [${PROGRESS}]"
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(MLX) $(LIBFT) -lXext -lX11
 	@printf "\e[2K\r- Build \033[1;32m${NAME}\033[0m [${CHECK}]\n"

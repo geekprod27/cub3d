@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:09:19 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/18 14:02:49 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/18 15:40:13 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,19 +166,20 @@ void	raycasting_loop(t_data *tex, t_mlx *mlx)
 				rays->drawend = HEIGHT - 1;
 		}
 		//diff colours for walls
-		int	colour;
+		// int	colour;
 		// if (tex->map[rays->mapy][rays->mapx] == '1')
-		colour = 255;
+		// colour = create_trgb(1, 0, 255, 0);
 		// else
 		// 	colour = create_trgb(1, 255, 0, 0);
 		
-		if (rays->side == 1)
-			colour = 255;
+		// if (rays->side == 1)
+		// 	colour = create_trgb(1, 0, 255 /2, 0);
 		// print_data(tex);
 		// print_ray(rays);
-		verline(x, rays->drawstart, rays->drawend, colour, mlx, tex);
+
+		// verline(x, rays->drawstart, rays->drawend, colour, mlx);
+		// (void)colour;
+		texture(tex, rays, 0, mlx, x);
 		x++;
 	}
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_win, mlx->mlx_img, 0, 0);
-	free(rays);
 }
