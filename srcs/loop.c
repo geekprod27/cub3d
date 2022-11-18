@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:09:19 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/18 15:40:13 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/18 15:57:25 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,37 +44,42 @@ void	print_ray(t_ray *rays)
 	printf("drawend : %d\n\n", rays->drawend);
 }
 
-void	init_dir_plan_time(t_data *tex)
+static void	set_dir_plan(t_data * data)
 {
-	tex->dirx = 0;
-	tex->diry = 0;
-	tex->planx = 0;
-	tex->plany = 0;
+	if (data->spawn == 'N')
+	{
+		data->plany = 0.66;
+		data->dirx = -1;
+	}
+	else if (data->spawn == 'S')
+	{
+		data->plany = -0.66;
+		data->dirx = 1;
+	}
+	else if (data->spawn == 'E')
+	{
+		data->planx = 0.66;
+		data->diry = 1;
+	}
+	else if (data->spawn == 'W')
+	{
+		data->planx = -0.66;
+		data->diry = -1;
+	}
+}
 
-	if (tex->spawn == 'N')
-	{
-		tex->plany = 0.66;
-		tex->dirx = -1;
-	}
-	else if (tex->spawn == 'S')
-	{
-		tex->plany = -0.66;
-		tex->dirx = 1;
-	}
-	else if (tex->spawn == 'E')
-	{
-		tex->planx = 0.66;
-		tex->diry = 1;
-	}
-	else if (tex->spawn == 'W')
-	{
-		tex->planx = -0.66;
-		tex->diry = -1;
-	}
-	tex->olddirx = tex->dirx;
-	tex->olddiry = tex->diry;
-	tex->oldplanx = tex->planx;
-	tex->oldplany = tex->plany;
+void	init_dir_plan_time(t_data *data)
+{
+	data->dirx = 0;
+	data->diry = 0;
+	data->planx = 0;
+	data->plany = 0;
+
+	set_dir_plan(data);
+	data->olddirx = data->dirx;
+	data->olddiry = data->diry;
+	data->oldplanx = data->planx;
+	data->oldplany = data->plany;
 }
 
 void	raycasting_loop(t_data *tex, t_mlx *mlx)
