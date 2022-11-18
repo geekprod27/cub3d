@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/17 12:28:17 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/18 15:33:08 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ void		error(char *d);
 int			create_trgb(int t, int r, int g, int b);
 void		init_dir_plan_time(t_data *tex);
 void		raycasting_loop(t_data *tex, t_mlx *mlx);
+void    	texture(t_data *data, t_ray *rays, int id, t_mlx *mlx, int x);
 void		verline(int x, int strat, int end, int color, t_mlx	*mlx, t_data *data);
 
 //		MOUVEMENT
