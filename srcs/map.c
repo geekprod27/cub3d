@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 15:43:01 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/18 15:28:26 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/18 15:57:55 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,18 @@ int	verifmap(char **map, t_data *data)
 
 	x = 0;
 	havespwn = 0;
-	if (!map)
-		return (0);
 	while (map[x])
 	{
 		y = 0;
 		while (map[x][y])
 		{
+			dprintf(2, "x %d  y %d\n", x, y);
 			if (!maps(data, x, y, &havespwn))
 				return (0);
 			if (map[x][y] != '1' && map[x][y] != ' ' && map[x][y] != '\n'
-				&& map[x][y] != '0')
+				&& map[x][y] != '0' && data->map[x][y] != 'N'
+				&& data->map[x][y] != 'S' && data->map[x][y] != 'E'
+				&& data->map[x][y] != 'W')
 				return (0);
 			y++;
 		}
