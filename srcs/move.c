@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:08:44 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/16 14:45:18 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/18 15:29:45 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	avancer(t_data *data)
 	x = (int)(data->posy + data->diry * MOVESPEED);
 	if (data->map[x][(int) data->posx] != '1')
 		data->posy += data->diry * MOVESPEED;
-	// mlx_clear_window(data->mlx->mlx_ptr, data->mlx->mlx_win);
-	// raycasting_loop(data, data->mlx);
 }
 
 void	reculer(t_data	*data)
@@ -36,8 +34,6 @@ void	reculer(t_data	*data)
 	x = (int)(data->posy - data->diry * MOVESPEED);
 	if (data->map[x][(int)(data->posx)] != '1')
 		data->posy -= data->diry * MOVESPEED;
-	// mlx_clear_window(data->mlx->mlx_ptr, data->mlx->mlx_win);
-	// raycasting_loop(data, data->mlx);
 }
 
 void	droite(t_data	*data)
@@ -50,8 +46,6 @@ void	droite(t_data	*data)
 	x = (int)(data->posy - data->dirx * MOVESPEED);
 	if (data->map[x][(int)(data->posx)] != '1')
 		data->posy -= data->dirx * MOVESPEED;
-	// mlx_clear_window(data->mlx->mlx_ptr, data->mlx->mlx_win);
-	// raycasting_loop(data, data->mlx);
 }
 
 void	gauche(t_data	*data)
@@ -64,8 +58,6 @@ void	gauche(t_data	*data)
 	x = (int)(data->posy + data->dirx * MOVESPEED);
 	if (data->map[x][(int)(data->posx)] != '1')
 		data->posy += data->dirx * MOVESPEED;
-	// mlx_clear_window(data->mlx->mlx_ptr, data->mlx->mlx_win);
-	// raycasting_loop(data, data->mlx);
 }
 
 void	rotr(t_data *data)
@@ -79,8 +71,6 @@ void	rotr(t_data *data)
 	oldplanex = data->planx;
 	data->planx = data->planx * cos(-ROTSPEED) - data->plany * sin(-ROTSPEED);
 	data->plany = oldplanex * sin(-ROTSPEED) + data->plany * cos(-ROTSPEED);
-	// mlx_clear_window(data->mlx->mlx_ptr, data->mlx->mlx_win);
-	// raycasting_loop(data, data->mlx);
 }
 
 void	rotl(t_data	*data)
@@ -94,6 +84,4 @@ void	rotl(t_data	*data)
 	oldplanex = data->planx;
 	data->planx = data->planx * cos(ROTSPEED) - data->plany * sin(ROTSPEED);
 	data->plany = oldplanex * sin(ROTSPEED) + data->plany * cos(ROTSPEED);
-	// mlx_clear_window(data->mlx->mlx_ptr, data->mlx->mlx_win);
-	// raycasting_loop(data, data->mlx);
 }

@@ -6,11 +6,31 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 11:51:25 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/18 13:42:28 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/18 15:14:59 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
+
+void	errorrgb(t_data *data)
+{
+	ft_putstr_fd("Error\nRGB", 2);
+	ft_exit(data, 1);
+}
+
+void	savedatac(t_data *data, int r, int g, int b)
+{
+		data->cr = r;
+		data->cg = g;
+		data->cb = b;
+}
+
+void	savedataf(t_data *data, int r, int g, int b)
+{
+		data->fr = r;
+		data->fg = g;
+		data->fb = b;
+}
 
 void	get_trgb(char *line, t_data	*data, char l)
 {
@@ -23,28 +43,42 @@ void	get_trgb(char *line, t_data	*data, char l)
 		line++;
 	line++;
 	if (*line == ',')
-		return ;
+		errorrgb(data);
 	g = ft_atoi(line);
 	while (*line && *line != ',')
 		line++;
 	line++;
 	if (*line == ',')
-		return ;
+		errorrgb(data);
 	b = ft_atoi(line);
 	if (r > 255 || g > 255 || b > 255)
-		return ;
+		errorrgb(data);
 	if (l == 'C')
-	{
-		data->cr = r;
-		data->cg = g;
-		data->cb = b;
-	}
+		savedatac(data, r, g, b);
 	else
+		savedataf(data, r, g, b);
+}
+
+char	**add(char **map, int i, char *line)
+{
+	int		len;
+	char	**ret;
+
+	len = 0;
+	while (map[len])
+			len++;
+	ret = malloc(sizeof(char *) * (len + 2));
+	if (!ret)
+		return (NULL);
+	while (map[i])
 	{
-		data->fr = r;
-		data->fg = g;
-		data->fb = b;
+		ret[i] = map[i];
+		i++;
 	}
+	ret[i] = line;
+	ret[i + 1] = NULL;
+	free(map);
+	return (ret);
 }
 
 char	**ft_addb(char **map, char *line)
@@ -56,22 +90,7 @@ char	**ft_addb(char **map, char *line)
 	len = 0;
 	i = 0;
 	if (map)
-	{
-		while (map[len])
-			len++;
-		ret = malloc(sizeof(char *) * (len + 2));
-		if (!ret)
-			return (NULL);
-		while (map[i])
-		{
-			ret[i] = map[i];
-			i++;
-		}
-		ret[i] = line;
-		ret[i + 1] = NULL;
-		free(map);
-		return (ret);
-	}
+		return (add(map, i, line));
 	ret = malloc(sizeof(char *) * 2);
 	if (!ret)
 		return (NULL);
@@ -106,7 +125,8 @@ void	openxpm(t_data *data, char *file, t_tex *tex, int i)
 	char	*filed;
 
 	filed = ft_strtrim(file, "\n");
-	tex[i].img = mlx_xpm_file_to_image(data->mlx->mlx_ptr, filed, &(tex[i].texwidth), &(tex[i].texheight));
+	tex[i].img = mlx_xpm_file_to_image(data->mlx->mlx_ptr, filed,
+			&(tex[i].texwidth), &(tex[i].texheight));
 	free(filed);
 	if (!tex[i].img)
 	{
@@ -114,7 +134,8 @@ void	openxpm(t_data *data, char *file, t_tex *tex, int i)
 		free(file - 3);
 		ft_exit(data, 1);
 	}
-	tex[i].imgadr = mlx_get_data_addr(tex[i].img, &tex[i].bitperpixel, &tex[i].line_size, &tex[i].endian);
+	tex[i].imgadr = mlx_get_data_addr(tex[i].img, &tex[i].bitperpixel,
+			&tex[i].line_size, &tex[i].endian);
 }
 
 t_data	*get_data(char *file, t_mlx *mlx)

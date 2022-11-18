@@ -1,9 +1,9 @@
-NO textures/spaceship_240/darkwall.xpm
-SO textures/spaceship_240/lightedwall.xpm
-WE textures/spaceship_240/metalstraf.xpm
-EA textures/spaceship_240/rustedmetal.xpm
+NO ./texture/bluestone.xpm
+SO ./texture/colorstone.xpm
+WE ./texture/redbrick.xpm
+EA ./texture/wood.xpm
 
-F 234,234,234
+F 234,234,,,,,,,,,,,234
 C 220,200,200
 
 11111111
