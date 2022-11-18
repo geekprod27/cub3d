@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 14:26:08 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/18 15:40:29 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/18 15:58:13 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ int	main(int argc, char **argv)
 			free(mlx);
 		exit(2);
 	}
-	if (!verifmap(tex->map, tex))
+	if (!tex->map || !verifmap(tex->map, tex))
 	{
 		ft_putstr_fd("Error\nMap invalide", 2);
 		ft_exit(tex, 2);

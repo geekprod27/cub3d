@@ -3,7 +3,7 @@ SO ./texture/colorstone.xpm
 WE ./texture/redbrick.xpm
 EA ./texture/wood.xpm
 
-F 234,234,,,,,,,,,,,234
+F 234,234,234
 C 220,200,200
 
 11111111
