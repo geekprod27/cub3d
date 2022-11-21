@@ -12,6 +12,8 @@ SRC_NAME =	main.c 						\
 			raycast/loop_steps.c		\
 			data_utils.c				\
 			map_utils.c					\
+			rotation.c					\
+			error.c					\
 			texture.c
 
 MLX = mlx/libmlx.a
