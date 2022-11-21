@@ -103,6 +103,16 @@ int	keyup(int keycode, void *param)
 	return (0);
 }
 
+void	saveold(t_data *data)
+{
+	data->oldposx = data->posx;
+	data->oldposy = data->posy;
+	data->olddirx = data->dirx;
+	data->olddiry = data->diry;
+	data->oldplanx = data->planx;
+	data->oldplany = data->plany;
+}
+
 int	reaf(void *param)
 {
 	t_data	*data;
@@ -124,24 +134,10 @@ int	reaf(void *param)
 		|| data->olddirx != data->dirx || data->olddiry != data->diry
 		|| data->oldplanx != data->planx || data->oldplany != data->plany)
 	{
-		// fprintf(stderr, "posx : %f posy : %f\n", data->posx, data->posy);
-		data->oldposx = data->posx;
-		data->oldposy = data->posy;
-		data->olddirx = data->dirx;
-		data->olddiry = data->diry;
-		data->oldplanx = data->planx;
-		data->oldplany = data->plany;
+		saveold(data);
 		raycasting_loop(data, data->mlx);
 	}
 	return (0);
-}
-
-void	error(char *d, t_data *data)
-{
-	ft_putstr_fd("Error\nMultiple ID :\n", 2);
-	ft_putstr_fd(d, 2);
-	free(d);
-	ft_exit(data, 3);
 }
 
 int	main(int argc, char **argv)

@@ -137,40 +137,41 @@ void		replace_space(char **map);
 void		error(char *d, t_data *data);
 int			create_trgb(int t, int r, int g, int b);
 void		ft_exit(t_data	*data, int exi);
+char		**ft_addb(char **map, char *line);
 
 /*****************************************************************/
 /*************************RAYCASTING_LOOP*************************/
 /////////////
-void	raycasting_loop(t_data *data, t_mlx *mlx);
+void		raycasting_loop(t_data *data, t_mlx *mlx);
 /////////////
 
 //inits dir, plan, and old ones
-void	init_dir_plan(t_data *data);
+void		init_dir_plan(t_data *data);
 
 //sets correct dir and plan with (NSWE)
-void	set_dir_plan(t_data * data);
+void		set_dir_plan(t_data *data);
 
 //INIT camx (x point on cam plane (-1, 0, 1)) +
 //raydirX/Y (ray directions) +
 //mapX/Y (current ray square info) +
 //deltadistX/Y (dist to next wall to jump, avoid div by 0)
-void	base_calc(t_data *data, t_ray *rays);
+void		base_calc(t_data *data, t_ray *rays);
 
 //INIT step (for square info mapX/Y) +
 //CALC first dist to next side reached
-void	step_first_dist(t_data *data, t_ray *rays);
+void		step_first_dist(t_data *data, t_ray *rays);
 
 //DDA algorithm part where decides which side/delta to jump +
 //verifies wall hit +
 //calc perpendicular dist ray to hit wall AKA perpwalldist
-void	DDA_one(t_data *data, t_ray *rays);
+void		dda_one(t_data *data, t_ray *rays);
 
 //calc lineHeight AKA line to be drawn + 
 //start and end of it (lowest/highest pixel to fill in current stripe)
-void	DDA_two(t_ray *rays);
+void		dda_two(t_ray *rays);
 
 //gives texture depending on wall side
-void	side_texture(t_data *data, t_ray *rays);
+void		side_texture(t_data *data, t_ray *rays);
 
 /*****************************************************************/
 /*****************************************************************/
@@ -178,21 +179,32 @@ void	side_texture(t_data *data, t_ray *rays);
 /*****************************************************************/
 /****************************TEXTURING****************************/
 /////////////
-void    texture(t_data *d, t_ray *rays, int id);
+void		texture(t_data *d, t_ray *rays, int id);
 /////////////
 
 //calc of wallx (coords text on the wall)+
 //calc texx = x coords of the texture, stays the same cause on as stripe
-void    x_tex_calc(t_data *d, t_ray *rays, int id);
+void		x_tex_calc(t_data *d, t_ray *rays, int id);
 
 //texture pxl for roof and ceiling replaced
-void	roof_ceil_tex(t_data *d, t_ray *rays, int y);
+void		roof_ceil_tex(t_data *d, t_ray *rays, int y);
 
 //texture pxl for wall replaced
-void	wall_tex(t_data *d, t_ray *rays, int y, int id);
+void		wall_tex(t_data *d, t_ray *rays, int y, int id);
 
 /*****************************************************************/
 /*****************************************************************/
+
+void		init_data(t_data *ret, t_mlx *mlx);
+void		*checkid(t_data *ret, int fd);
+void		errorrgb(t_data *data);
+void		puterrorline(char *line);
+void		error(char *d, t_data *data);
+void		getmap(char *line, int fd, t_data *ret);
+char		**add(char **map, int i, char *line);
+void		get_trgb(char *line, t_data	*data, char l);
+void		checkopenxpm(int id, char *line, t_data *ret);
+void		openxpm(t_data *data, char *file, t_tex *tex, int i);
 
 //		MOUVEMENT
 

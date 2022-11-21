@@ -20,7 +20,6 @@ void	base_calc(t_data *data, t_ray *rays)
 	rays->raydiry = data->diry + data->plany * rays->camerax;
 	rays->mapx = (int)(data->posx);
 	rays->mapy = (int)(data->posy);
-
 	if (rays->raydirx == 0)
 		rays->deltadistx = 1e30;
 	else
@@ -55,7 +54,7 @@ void	step_first_dist(t_data *data, t_ray *rays)
 	}
 }
 
-void	DDA_one(t_data *data, t_ray *rays)
+void	dda_one(t_data *data, t_ray *rays)
 {
 	if (rays->sidedistx < rays->sidedisty)
 	{
@@ -69,17 +68,15 @@ void	DDA_one(t_data *data, t_ray *rays)
 		rays->mapy += rays->stepy;
 		rays->side = 1;
 	}
-
 	if (data->map[rays->mapy][rays->mapx] == '1')
 		rays->hit = 1;
-
 	if (rays->side == 0)
 		rays->perpwalldist = rays->sidedistx - rays->deltadistx;
 	else
 		rays->perpwalldist = rays->sidedisty - rays->deltadisty;
 }
 
-void	DDA_two(t_ray *rays)
+void	dda_two(t_ray *rays)
 {
 	if (rays->perpwalldist == 0)
 		rays->lineheight = HEIGHT - 2;
@@ -88,7 +85,6 @@ void	DDA_two(t_ray *rays)
 	rays->drawstart = -(rays->lineheight) / 2 + HEIGHT / 2;
 	if (rays->drawstart < 0)
 		rays->drawstart = 0;
-
 	rays->drawend = rays->lineheight / 2 + HEIGHT / 2;
 	if (rays->drawend >= HEIGHT)
 		rays->drawend = HEIGHT - 1;

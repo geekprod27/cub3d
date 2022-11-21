@@ -26,8 +26,8 @@ void	raycasting_loop(t_data *data, t_mlx *mlx)
 		step_first_dist(data, rays);
 		while (rays->hit == 0)
 		{
-			DDA_one(data, rays);
-			DDA_two(rays);
+			dda_one(data, rays);
+			dda_two(rays);
 		}
 		side_texture(data, rays);
 		x++;
