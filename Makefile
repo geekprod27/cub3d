@@ -10,7 +10,8 @@ SRC_NAME =	main.c 						\
 			raycast/raycasting_loop.c	\
 			raycast/init_loop.c			\
 			raycast/loop_steps.c		\
-			seg.c						\
+			data_utils.c				\
+			map_utils.c					\
 			texture.c
 
 MLX = mlx/libmlx.a
@@ -24,7 +25,7 @@ OBJ_NAME = $(SRC_NAME:.c=.o)
 SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
 
-CC	= cc
+CC	= clang
 CFLAGS	= -Wall -Wextra -Werror -g
 
 all: $(NAME)

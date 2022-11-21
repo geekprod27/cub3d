@@ -22,6 +22,7 @@ void	print_data(t_data *data)
 	printf("dirx : %f\n", data->dirx);
 	printf("diry : %f\n\n", data->diry);
 }
+
 void	print_ray(t_ray *rays)
 {
 	printf("[******************RAY DATA]*****************\n");
@@ -44,7 +45,7 @@ void	print_ray(t_ray *rays)
 	printf("drawend : %d\n\n", rays->drawend);
 }
 
-void	set_dir_plan(t_data * data)
+void	set_dir_plan(t_data *data)
 {
 	if (data->spawn == 'N')
 	{
@@ -74,7 +75,6 @@ void	init_dir_plan(t_data *data)
 	data->diry = 0;
 	data->planx = 0;
 	data->plany = 0;
-
 	set_dir_plan(data);
 	data->olddirx = data->dirx;
 	data->olddiry = data->diry;
