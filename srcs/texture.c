@@ -6,7 +6,7 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:28:13 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/21 15:52:45 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/21 16:16:40 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,15 @@ void	roof_ceil_tex(t_data *d, t_ray *rays, int y)
 void	wall_tex(t_data *d, t_ray *rays, int y, int id)
 {
     int     coords;
+    int     tmp;
     char    colour[4];
 
     if (y >= rays->drawstart && y <= rays->drawend)
     {
         rays->texy = (int)rays->texpos & (d->tex[id].texheight - 1);
         rays->texpos += rays->step;
-        coords = rays->texy * d->tex[id].line_size + rays->texx * (d->tex[id].bitperpixel / 8);
+        tmp = rays->texx * (d->tex[id].bitperpixel / 8);
+        coords = rays->texy * d->tex[id].line_size + tmp;
         colour[0] = d->tex[id].imgadr[coords];
         colour[1] = d->tex[id].imgadr[coords + 1];
         colour[2] = d->tex[id].imgadr[coords + 2];
@@ -70,18 +72,18 @@ void	wall_tex(t_data *d, t_ray *rays, int y, int id)
     }
 }
 
-void    texture(t_data *d, t_ray *rays, int id)
+void    texture(t_data *d, t_ray *r, int id)
 {
     int     y;
 
-    x_tex_calc(d, rays, id);
-    rays->step = 1.0 * d->tex[id].texheight / rays->lineheight;
-    rays->texpos = (rays->drawstart - HEIGHT / 2 + rays->lineheight / 2) * rays->step;
+    x_tex_calc(d, r, id);
+    r->step = 1.0 * d->tex[id].texheight / r->lineheight;
+    r->texpos = (r->drawstart - HEIGHT / 2 + r->lineheight / 2) * r->step;
     y = 0;
     while (y < HEIGHT)
     {
-        wall_tex(d, rays, y, id);
-        roof_ceil_tex(d, rays, y);
+        wall_tex(d, r, y, id);
+        roof_ceil_tex(d, r, y);
         y++;
     }
 }

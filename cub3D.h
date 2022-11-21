@@ -6,7 +6,7 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/21 13:02:55 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/21 16:13:32 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,13 +206,15 @@ void		get_trgb(char *line, t_data	*data, char l);
 void		checkopenxpm(int id, char *line, t_data *ret);
 void		openxpm(t_data *data, char *file, t_tex *tex, int i);
 
-//		MOUVEMENT
-
+/*****************************************************************/
+/****************************MOVEMENTS****************************/
 void		avancer(t_data *data);
 void		reculer(t_data *data);
 void		droite(t_data *data);
 void		gauche(t_data *data);
 void		rotl(t_data	*data);
 void		rotr(t_data	*data);
+/*****************************************************************/
+/*****************************************************************/
 
 #endif
