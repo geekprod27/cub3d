@@ -6,7 +6,7 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 14:26:08 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/18 17:29:19 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/21 11:43:48 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,7 +188,7 @@ int	main(int argc, char **argv)
 	mlx_hook(mlx->mlx_win, ON_KEYUP, 1L << 1, keyup, tex);
 	mlx_hook(mlx->mlx_win, ON_DESTROY, 0, redcross, tex);
 	mlx_loop_hook(mlx->mlx_ptr, reaf, tex);
-	init_dir_plan_time(tex);
+	init_dir_plan(tex);
 	raycasting_loop(tex, tex->mlx);
 	mlx_loop(mlx->mlx_ptr);
 }

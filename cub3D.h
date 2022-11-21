@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/18 15:42:44 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/21 13:02:55 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,13 @@ typedef struct s_ray
 	int		drawstart;
 	int		drawend;
 
+	double	wallx;
+	int		texx;
+	int		texy;
+	double	step;
+	double	texpos;
+	int		x;
+
 }	t_ray;
 
 typedef struct s_point	t_point;
@@ -129,11 +136,63 @@ int			verifmap(char **map, t_data *data);
 void		replace_space(char **map);
 void		error(char *d, t_data *data);
 int			create_trgb(int t, int r, int g, int b);
-void		init_dir_plan_time(t_data *tex);
-void		raycasting_loop(t_data *tex, t_mlx *mlx);
-void		texture(t_data *data, t_ray *rays, int id, t_mlx *mlx, int x);
-void		verline(int x, int strat, int end, t_data *data);
 void		ft_exit(t_data	*data, int exi);
+
+/*****************************************************************/
+/*************************RAYCASTING_LOOP*************************/
+/////////////
+void	raycasting_loop(t_data *data, t_mlx *mlx);
+/////////////
+
+//inits dir, plan, and old ones
+void	init_dir_plan(t_data *data);
+
+//sets correct dir and plan with (NSWE)
+void	set_dir_plan(t_data * data);
+
+//INIT camx (x point on cam plane (-1, 0, 1)) +
+//raydirX/Y (ray directions) +
+//mapX/Y (current ray square info) +
+//deltadistX/Y (dist to next wall to jump, avoid div by 0)
+void	base_calc(t_data *data, t_ray *rays);
+
+//INIT step (for square info mapX/Y) +
+//CALC first dist to next side reached
+void	step_first_dist(t_data *data, t_ray *rays);
+
+//DDA algorithm part where decides which side/delta to jump +
+//verifies wall hit +
+//calc perpendicular dist ray to hit wall AKA perpwalldist
+void	DDA_one(t_data *data, t_ray *rays);
+
+//calc lineHeight AKA line to be drawn + 
+//start and end of it (lowest/highest pixel to fill in current stripe)
+void	DDA_two(t_ray *rays);
+
+//gives texture depending on wall side
+void	side_texture(t_data *data, t_ray *rays);
+
+/*****************************************************************/
+/*****************************************************************/
+
+/*****************************************************************/
+/****************************TEXTURING****************************/
+/////////////
+void    texture(t_data *d, t_ray *rays, int id);
+/////////////
+
+//calc of wallx (coords text on the wall)+
+//calc texx = x coords of the texture, stays the same cause on as stripe
+void    x_tex_calc(t_data *d, t_ray *rays, int id);
+
+//texture pxl for roof and ceiling replaced
+void	roof_ceil_tex(t_data *d, t_ray *rays, int y);
+
+//texture pxl for wall replaced
+void	wall_tex(t_data *d, t_ray *rays, int y, int id);
+
+/*****************************************************************/
+/*****************************************************************/
 
 //		MOUVEMENT
 

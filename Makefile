@@ -3,12 +3,14 @@ NAME = cub3D
 SRC_PATH = srcs/
 OBJ_PATH = obj/
 
-SRC_NAME =	main.c 			\
-			data.c 			\
-			map.c			\
-			move.c			\
-			loop.c			\
-			seg.c			\
+SRC_NAME =	main.c 						\
+			data.c 						\
+			map.c						\
+			move.c						\
+			raycast/raycasting_loop.c	\
+			raycast/init_loop.c			\
+			raycast/loop_steps.c		\
+			seg.c						\
 			texture.c
 
 MLX = mlx/libmlx.a
@@ -29,7 +31,7 @@ all: $(NAME)
 
 $(NAME): $(LIBFT) $(MLX) $(OBJ) cub3D.h
 	@printf "\e[2K\r- Build \033[1;33m${NAME}\033[0m [${PROGRESS}]"
-	@$(CC) $(CFLAGS) -lm $(OBJ) -o $(NAME) $(MLX) $(LIBFT) -lXext -lX11
+	@$(CC) $(CFLAGS) $(OBJ) -lm -o $(NAME) $(MLX) $(LIBFT) -lXext -lX11
 	@printf "\e[2K\r- Build \033[1;32m${NAME}\033[0m [${CHECK}]\n"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
