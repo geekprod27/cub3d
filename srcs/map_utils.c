@@ -37,7 +37,7 @@ void	zeud2(char *line, t_data *ret, int *i)
 		*i = *i + 1;
 	}
 	else if (line[0] != '\n')
-		puterrorline(line);
+		puterrorline(line, ret);
 }
 
 void	zeud(char *line, t_data *ret, int *i)

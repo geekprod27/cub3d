@@ -198,7 +198,7 @@ void		wall_tex(t_data *d, t_ray *rays, int y, int id);
 void		init_data(t_data *ret, t_mlx *mlx);
 void		*checkid(t_data *ret, int fd);
 void		errorrgb(t_data *data);
-void		puterrorline(char *line);
+void		puterrorline(char *line, t_data *ret);
 void		error(char *d, t_data *data);
 void		getmap(char *line, int fd, t_data *ret);
 char		**add(char **map, int i, char *line);

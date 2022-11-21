@@ -6,7 +6,7 @@ void	errorrgb(t_data *data)
 	ft_exit(data, 1);
 }
 
-void	puterrorline(char *line)
+void	puterrorline(char *line, t_data *ret)
 {
 	ft_putstr_fd("Error\nID inconue sur la ligne :\n", 2);
 	ft_putstr_fd(line, 2);
