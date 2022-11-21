@@ -27,7 +27,6 @@ void	freetab(char **map)
 
 void	ft_exit(t_data	*data, int exi)
 {
-	fprintf(stderr, "ft_exit\n");
 	if (data->map)
 		freetab(data->map);
 	if (data->mlx->mlx_img)

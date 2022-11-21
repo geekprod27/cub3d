@@ -54,7 +54,6 @@ int	verifmap(char **map, t_data *data)
 		y = 0;
 		while (map[x][y])
 		{
-			dprintf(2, "x %d  y %d\n", x, y);
 			if (!maps(data, x, y, &havespwn))
 				return (0);
 			if (map[x][y] != '1' && map[x][y] != ' ' && map[x][y] != '\n'

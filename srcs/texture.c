@@ -51,14 +51,14 @@ void	roof_ceil_tex(t_data *d, t_ray *rays, int y)
 void	wall_tex(t_data *d, t_ray *rays, int y, int id)
 {
 	int		coords;
-    int     tmp;
+	int		tmp;
 	char	colour[4];
 
 	if (y >= rays->drawstart && y <= rays->drawend)
 	{
 		rays->texy = (int)rays->texpos & (d->tex[id].texheight - 1);
 		rays->texpos += rays->step;
-        tmp = rays->texx * (d->tex[id].bitperpixel / 8);
+		tmp = rays->texx * (d->tex[id].bitperpixel / 8);
 		coords = rays->texy * d->tex[id].line_size + tmp;
 		colour[0] = d->tex[id].imgadr[coords];
 		colour[1] = d->tex[id].imgadr[coords + 1];
@@ -66,7 +66,7 @@ void	wall_tex(t_data *d, t_ray *rays, int y, int id)
 		colour[3] = d->tex[id].imgadr[coords + 3];
 		coords = y * d->mlx->line_size + rays->x * (d->mlx->bitperpixel / 8);
 		d->mlx->mlx_imgadr[coords] = colour[0];
-		d->mlx->mlx_imgadr[coords+ 1] = colour[1];
+		d->mlx->mlx_imgadr[coords + 1] = colour[1];
 		d->mlx->mlx_imgadr[coords + 2] = colour[2];
 		d->mlx->mlx_imgadr[coords + 3] = colour[3];
 	}
@@ -76,14 +76,14 @@ void	texture(t_data *d, t_ray *r, int id)
 {
 	int	y;
 
-    x_tex_calc(d, r, id);
-    r->step = 1.0 * d->tex[id].texheight / r->lineheight;
-    r->texpos = (r->drawstart - HEIGHT / 2 + r->lineheight / 2) * r->step;
-    y = 0;
-    while (y < HEIGHT)
-    {
-        wall_tex(d, r, y, id);
-        roof_ceil_tex(d, r, y);
-        y++;
-    }
+	x_tex_calc(d, r, id);
+	r->step = 1.0 * d->tex[id].texheight / r->lineheight;
+	r->texpos = (r->drawstart - HEIGHT / 2 + r->lineheight / 2) * r->step;
+	y = 0;
+	while (y < HEIGHT)
+	{
+		wall_tex(d, r, y, id);
+		roof_ceil_tex(d, r, y);
+		y++;
+	}
 }
