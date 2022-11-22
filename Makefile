@@ -4,6 +4,7 @@ SRC_PATH = srcs/
 OBJ_PATH = obj/
 
 SRC_NAME =	main.c 						\
+			main_utils.c				\
 			data.c 						\
 			map.c						\
 			move.c						\
@@ -13,7 +14,7 @@ SRC_NAME =	main.c 						\
 			data_utils.c				\
 			map_utils.c					\
 			rotation.c					\
-			error.c					\
+			error.c						\
 			texture.c
 
 MLX = mlx/libmlx.a

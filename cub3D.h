@@ -6,7 +6,7 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/21 16:13:32 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/22 14:01:33 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,9 +135,14 @@ int			name_check(char *arg);
 int			verifmap(char **map, t_data *data);
 void		replace_space(char **map);
 void		error(char *d, t_data *data);
+void		data_error(t_mlx *mlx);
+void		mlx_events(t_data *data, t_mlx *mlx);
 int			create_trgb(int t, int r, int g, int b);
 void		ft_exit(t_data	*data, int exi);
 char		**ft_addb(char **map, char *line);
+void		saveold(t_data *data);
+void		freetab(char **map);
+void		ft_exit(t_data	*data, int exi);
 
 /*****************************************************************/
 /*************************RAYCASTING_LOOP*************************/
