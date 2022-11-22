@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/22 16:24:19 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:54:01 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <math.h>
-# include "mlx/mlx.h"
-# include "libft/libft.h"
+# include "../mlx/mlx.h"
+# include "../libft/libft.h"
 
 # define MOVESPEED 0.1
 # define ROTSPEED 0.03
@@ -144,7 +144,7 @@ char		**ft_addb(char **map, char *line);
 void		saveold(t_data *data);
 void		freetab(char **map);
 void		ft_exit(t_data	*data, int exi);
-void		minimap(t_data *d, t_ray *rays);
+void		minimap(t_data *d);
 
 /*****************************************************************/
 /*************************RAYCASTING_LOOP*************************/

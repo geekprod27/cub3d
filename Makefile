@@ -1,9 +1,11 @@
 NAME = cub3D
+NAME_BONUS = cub3D_bonus
 
 SRC_PATH = mandatory/srcs/
 BONUS_SRC_PATH	= bonus/srcs/
 
-OBJ_PATH = obj/
+OBJ_PATH = mandatory/obj/
+OBJ_PATH_BONUS = bonus/obj/
 
 SRC_NAME =	main.c 						\
 			main_utils.c				\
@@ -28,6 +30,7 @@ SRC_BONUS =	main.c 						\
 			raycast/init_loop.c			\
 			raycast/loop_steps.c		\
 			data_utils.c				\
+			minimap.c					\
 			map_utils.c					\
 			rotation.c					\
 			error.c						\
@@ -40,12 +43,14 @@ PROGRESS = 🔁
 CHECK = ✅
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
+OBJ_NAME_BONUS = $(SRC_BONUS:.c=.o)
 
 SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
 BONUS_SRC = $(addprefix $(BONUS_SRC_PATH),$(SRC_BONUS))
 OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
+OBJ_BONUS = $(addprefix $(OBJ_PATH_BONUS),$(OBJ_NAME_BONUS))
 
-CC	= clang
+CC	= gcc
 CFLAGS	= -Wall -Wextra -Werror -g
 
 all: $(NAME)
@@ -61,6 +66,12 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c mandatory/cub3D.h
 	@$(CC) $(CFLAGS) -I$(SRC_PATH) -o $@ -c $<
 	@printf "\e[2K\r- \033[1;32m$<\033[0m [${CHECK}]\n"
 
+$(OBJ_PATH_BONUS)%.o: $(BONUS_SRC_PATH)%.c bonus/cub3D.h
+	@printf "\e[2K\r- \033[1;34m$<\033[0m [${PROGRESS}]"
+	@mkdir -p $(@D)
+	@$(CC) $(CFLAGS) -I$(BONUS_SRC_PATH) -o $@ -c $<
+	@printf "\e[2K\r- \033[1;32m$<\033[0m [${CHECK}]\n"
+
 $(MLX):
 	@printf "\e[2K\r-[\033[1mLIB\033[0m] \033[1;33mMLX\033[0m [${PROGRESS}]"
 	@make --no-print-directory -C ./mlx  > /dev/null 2> /dev/null
@@ -71,9 +82,14 @@ $(LIBFT):
 	@$(MAKE) --no-print-directory -C ./libft
 	@printf "\e[2K\r-[\033[1mLIB\033[0m] \033[1;32mLibft\033[0m [${CHECK}]\n"
 
+bonus: $(LIBFT) $(MLX) $(OBJ_BONUS) bonus/cub3D.h
+	@printf "\e[2K\r- Build \033[1;33m${NAME_BONUS}\033[0m [${PROGRESS}]"
+	@$(CC) $(CFLAGS) $(OBJ_BONUS) -lm -o $(NAME_BONUS) $(MLX) $(LIBFT) -lXext -lX11
+	@printf "\e[2K\r- Build \033[1;32m${NAME_BONUS}\033[0m [${CHECK}]\n"
+
 clean:
 	@printf "\e[2K\r- \033[36mClean des objs\033[0m [${PROGRESS}]"
-	@rm -rf $(OBJ_PATH)
+	@rm -rf $(OBJ_PATH) $(OBJ_PATH_BONUS)
 	@printf "\e[2K\r- \033[31mClean des objs\033[0m [${CHECK}]\n"
 	@printf "\e[2K\r- \033[36mClean MLX\033[0m [${PROGRESS}]"
 	@make clean --no-print-directory -C ./mlx
@@ -82,12 +98,15 @@ clean:
 
 fclean:	clean
 	@printf "\e[2K\r- \033[36mClean de lexecutable\033[0m [${PROGRESS}]"
-	@rm -f $(NAME)
+	@rm -f $(NAME) $(NAME_BONUS)
 	@printf "\e[2K\r- \033[31mClean de lexecutable\033[0m [${CHECK}]\n"
 	@printf "\e[2K\r- \033[36mFclean libft\033[0m [${PROGRESS}]"
 	@$(MAKE) fclean --no-print-directory -C ./libft
 	@printf "\e[2K\r- \033[31mFclean libft\033[0m [${CHECK}]\n"
 	@printf "\e[2K\r \033[1;32mFclean all\033[0m [${CHECK}]\n"
+
+re_bonus:	fclean
+	@make bonus
 
 re:	fclean
 	@make all
