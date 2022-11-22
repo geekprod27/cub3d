@@ -6,7 +6,7 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:39:49 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/22 13:43:14 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/22 14:30:26 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	errorrgb(t_data *data)
 {
-	ft_putstr_fd("Error : RGB", 2);
+	ft_putstr_fd("Error : wrong RGB data", 2);
 	ft_exit(data, 1);
 }
 
@@ -32,4 +32,11 @@ void	error(char *d, t_data *data)
 	ft_putstr_fd(d, 2);
 	free(d);
 	ft_exit(data, 3);
+}
+
+int	ft_error(char *msg)
+{
+	ft_putstr_fd("Error : ", 2);
+	ft_putstr_fd(msg, 2);
+	return (0);
 }
