@@ -50,12 +50,12 @@ CFLAGS	= -Wall -Wextra -Werror -g
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(MLX) $(OBJ) cub3D.h
+$(NAME): $(LIBFT) $(MLX) $(OBJ) mandatory/cub3D.h
 	@printf "\e[2K\r- Build \033[1;33m${NAME}\033[0m [${PROGRESS}]"
 	@$(CC) $(CFLAGS) $(OBJ) -lm -o $(NAME) $(MLX) $(LIBFT) -lXext -lX11
 	@printf "\e[2K\r- Build \033[1;32m${NAME}\033[0m [${CHECK}]\n"
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c mandatory/cub3D.h
 	@printf "\e[2K\r- \033[1;34m$<\033[0m [${PROGRESS}]"
 	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) -I$(SRC_PATH) -o $@ -c $<

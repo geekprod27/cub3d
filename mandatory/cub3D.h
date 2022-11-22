@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/22 15:58:40 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:40:09 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <math.h>
-# include "mlx/mlx.h"
-# include "libft/libft.h"
+# include "../mlx/mlx.h"
+# include "../libft/libft.h"
 
 # define MOVESPEED 0.1
 # define ROTSPEED 0.03
