@@ -6,7 +6,7 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:47:42 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/22 14:21:50 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/22 14:43:21 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	ft_exit(t_data	*data, int exi)
 
 void	data_error(t_mlx *mlx)
 {
-	ft_putstr_fd("Error : data creation failed\n", 2);
+	ft_putstr_fd("Error\nData creation failed\n", 2);
 	if (mlx->mlx_img)
 		mlx_destroy_image(mlx->mlx_ptr, mlx->mlx_img);
 	if (mlx->mlx_win)

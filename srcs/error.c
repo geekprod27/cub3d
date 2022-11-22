@@ -6,7 +6,7 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:39:49 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/22 14:33:04 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/22 14:42:46 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	errorrgb(t_data *data)
 {
-	ft_putstr_fd("Error : wrong RGB data\n", 2);
+	ft_putstr_fd("Error\nWrong RGB data\n", 2);
 	ft_exit(data, 1);
 }
 
 void	puterrorline(char *line, t_data *ret)
 {
-	ft_putstr_fd("Error : unknown ID on line : ", 2);
+	ft_putstr_fd("Error\nUnknown ID on line : ", 2);
 	ft_putstr_fd(line, 2);
 	ft_putstr_fd("\n", 2);
 	free(line);
@@ -29,7 +29,7 @@ void	puterrorline(char *line, t_data *ret)
 
 void	error(char *d, t_data *data)
 {
-	ft_putstr_fd("Error : Multiple ID : ", 2);
+	ft_putstr_fd("Error\nMultiple ID : ", 2);
 	ft_putstr_fd(d, 2);
 	ft_putstr_fd("\n", 2);
 	free(d);
@@ -38,7 +38,7 @@ void	error(char *d, t_data *data)
 
 int	ft_error(char *msg)
 {
-	ft_putstr_fd("Error : ", 2);
+	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(msg, 2);
 	return (0);
 }
