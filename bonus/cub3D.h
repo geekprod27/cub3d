@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/22 15:57:00 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/22 15:58:40 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,6 @@ typedef struct s_data
 	double	oldplany;
 	double	olddirx;
 	double	olddiry;
-	double	oldtime;
-	double	time;
-	int		mapwidth;
-	int		mapheight;
 }	t_data;
 
 typedef struct s_ray
@@ -207,7 +203,7 @@ void		wall_tex(t_data *d, t_ray *rays, int y, int id);
 
 void		init_data(t_data *ret, t_mlx *mlx);
 void		*checkid(t_data *ret, int fd);
-void		errorrgb(t_data *data);
+void		errorrgb(t_data *data, char *line);
 void		puterrorline(char *line, t_data *ret);
 void		error(char *d, t_data *data);
 void		getmap(char *line, int fd, t_data *ret);
