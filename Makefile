@@ -17,6 +17,20 @@ SRC_NAME =	main.c 						\
 			error.c						\
 			texture.c
 
+BONUS_SRC =	main.c 						\
+			main_utils.c				\
+			data.c 						\
+			map.c						\
+			move.c						\
+			raycast/raycasting_loop.c	\
+			raycast/init_loop.c			\
+			raycast/loop_steps.c		\
+			data_utils.c				\
+			map_utils.c					\
+			rotation.c					\
+			error.c						\
+			texture.c
+
 MLX = mlx/libmlx.a
 LIBFT = ./libft/libft.a
 
