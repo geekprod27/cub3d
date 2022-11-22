@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 11:51:25 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/22 16:04:42 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/22 17:23:38 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,7 @@ t_data	*get_data(char *file, t_mlx *mlx)
 	int		fd;
 	char	*line;
 	t_data	*ret;
-	int		i;
 
-	i = 0;
 	fd = open(file, O_RDONLY);
 	if (fd == 1 || fd == -1)
 		return (NULL);

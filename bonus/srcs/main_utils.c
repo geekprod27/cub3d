@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:47:42 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/22 14:43:21 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/22 17:46:37 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	freetab(char **map)
 
 void	ft_exit(t_data	*data, int exi)
 {
+	mlx_mouse_show(data->mlx->mlx_ptr, data->mlx->mlx_win);
 	if (data->map)
 		freetab(data->map);
 	if (data->mlx->mlx_img)
@@ -77,6 +78,28 @@ void	data_error(t_mlx *mlx)
 		free(mlx);
 }
 
+void	checkmouse(t_data *d)
+{
+	int		x;
+	int		y;
+	double	dd;
+
+	mlx_mouse_get_pos(d->mlx->mlx_ptr, d->mlx->mlx_win, &x, &y);
+	if (x < (HEIGHT / 2))
+	{
+		dd = (x - (HEIGHT / 2)) * 0.05 * -1;
+		dprintf(2, "%f\n", dd);
+		rotlmouse(d, dd);
+	}
+	else if (x > (HEIGHT / 2))
+	{
+		dd = (x - (HEIGHT / 2)) * 0.05;
+		dprintf(2, "%f\n", dd);
+		rotrmouse(d, dd);
+	}
+	mlx_mouse_move(d->mlx->mlx_ptr, d->mlx->mlx_win, HEIGHT / 2, WIDTH / 2);
+}
+
 int	reaf(void *param)
 {
 	t_data	*data;
@@ -94,6 +117,7 @@ int	reaf(void *param)
 		rotr(data);
 	if (data->ga)
 		rotl(data);
+	checkmouse(data);
 	if (data->oldposx != data->posx || data->oldposy != data->posy
 		|| data->olddirx != data->dirx || data->olddiry != data->diry
 		|| data->oldplanx != data->planx || data->oldplany != data->plany)

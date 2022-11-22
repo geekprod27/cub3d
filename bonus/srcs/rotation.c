@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotation.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:40:03 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/22 13:40:05 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/22 17:41:36 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,30 @@ void	rotl(t_data	*data)
 	oldplanex = data->planx;
 	data->planx = data->planx * cos(ROTSPEED) - data->plany * sin(ROTSPEED);
 	data->plany = oldplanex * sin(ROTSPEED) + data->plany * cos(ROTSPEED);
+}
+
+void	rotrmouse(t_data *data, double speed)
+{
+	double	olddirx;
+	double	oldplanex;
+
+	olddirx = data->dirx;
+	data->dirx = data->dirx * cos(-speed) - data->diry * sin(-speed);
+	data->diry = olddirx * sin(-speed) + data->diry * cos(-speed);
+	oldplanex = data->planx;
+	data->planx = data->planx * cos(-speed) - data->plany * sin(-speed);
+	data->plany = oldplanex * sin(-speed) + data->plany * cos(-speed);
+}
+
+void	rotlmouse(t_data	*data, double speed)
+{
+	double	olddirx;
+	double	oldplanex;
+
+	olddirx = data->dirx;
+	data->dirx = data->dirx * cos(speed) - data->diry * sin(speed);
+	data->diry = olddirx * sin(speed) + data->diry * cos(speed);
+	oldplanex = data->planx;
+	data->planx = data->planx * cos(speed) - data->plany * sin(speed);
+	data->plany = oldplanex * sin(speed) + data->plany * cos(speed);
 }

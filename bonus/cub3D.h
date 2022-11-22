@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/22 16:54:01 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/22 17:41:46 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,6 +221,8 @@ void		droite(t_data *data);
 void		gauche(t_data *data);
 void		rotl(t_data	*data);
 void		rotr(t_data	*data);
+void		rotrmouse(t_data *data, double speed);
+void		rotlmouse(t_data *data, double speed);
 /*****************************************************************/
 /*****************************************************************/
 
