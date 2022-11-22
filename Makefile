@@ -1,6 +1,8 @@
 NAME = cub3D
 
-SRC_PATH = srcs/
+SRC_PATH = mandatory/srcs/
+BONUS_SRC_PATH	= bonus/srcs/
+
 OBJ_PATH = obj/
 
 SRC_NAME =	main.c 						\
@@ -17,7 +19,7 @@ SRC_NAME =	main.c 						\
 			error.c						\
 			texture.c
 
-BONUS_SRC =	main.c 						\
+SRC_BONUS =	main.c 						\
 			main_utils.c				\
 			data.c 						\
 			map.c						\
@@ -40,6 +42,7 @@ CHECK = ✅
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
 SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
+BONUS_SRC = $(addprefix $(BONUS_SRC_PATH),$(SRC_BONUS))
 OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
 
 CC	= clang

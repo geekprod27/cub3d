@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_loop.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:09:19 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/22 16:09:41 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:24:56 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	raycasting_loop(t_data *data, t_mlx *mlx)
 		side_texture(data, rays);
 		x++;
 	}
+	minimap(data, rays);
 	free(rays);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_win, mlx->mlx_img, 0, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 15:52:03 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/22 16:21:40 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:31:29 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,8 @@ void	minimap(t_data *d, t_ray *rays)
 		y = 9;
 		while (y < 60)
 		{
-			coords = x * d->mlx->line_size + 
-					y * (d->mlx->bitperpixel / 8);
-			if (d->map[x][y] == 'N' || d->map[x][y] == 'S'
-					|| d->map[x][y] == 'E' || d->map[x][y] == 'W')
+			coords = x * d->mlx->line_size + y * (d->mlx->bitperpixel / 8);
+			if (d->posx == y && d->posy == x)
 			{
 				d->mlx->mlx_imgadr[coords] = 0;
 				d->mlx->mlx_imgadr[coords + 1] = 0;
