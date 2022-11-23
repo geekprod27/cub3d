@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 15:52:03 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/23 17:39:50 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:52:14 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ void	minimap(t_data *d)
 	x = 9;
 	//printf("posx %f, posy %f\n", d->posx, d->posy);
 	i = d->posy - 5;
-	while (x < 110)
+	while (x < 110 && i < d->xmax)
 	{
 		j = d->posx - 5;
 		y = 9;
-		while (y < 110)
+		while (y < 110 && j < d->ymax)
 		{
 			coords = x * d->mlx->line_size + y * (d->mlx->bitperpixel / 8);
-			if (i < 0 || j < 0)
+			if (i < 0 || i >= d->xmax || j < 0 || j >= d->ymax)
 			{
 				continue;
 			}
@@ -59,7 +59,7 @@ void	minimap(t_data *d)
 				d->mlx->mlx_imgadr[coords + 2] = 153;
 				d->mlx->mlx_imgadr[coords + 3] = 1;
 			}
-			printf("i:%d, j:%d\n", i, j);
+			//printf("i:%d, j:%d\n", i, j);
 			if ((y + 1) % 10 == 0)
 				j++;
 			y++;
