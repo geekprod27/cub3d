@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 14:26:08 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/22 17:45:54 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/22 18:12:43 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,11 @@ int	redcross(void *param)
 	return (0);
 }
 
-void	mlx_events(t_data *data, t_mlx *mlx)
+void	mlx_events(t_data *data, t_mlx *mlx, char *file)
 {
-	mlx->mlx_win = mlx_new_window(mlx->mlx_ptr, WIDTH, HEIGHT, "cub3D");
+	file = ft_strjoin_free2("cub3D - ", file);
+	free(file);
+	mlx->mlx_win = mlx_new_window(mlx->mlx_ptr, WIDTH, HEIGHT, file);
 	mlx->mlx_img = mlx_new_image(mlx->mlx_ptr, WIDTH, HEIGHT);
 	mlx->mlx_imgadr = mlx_get_data_addr(mlx->mlx_img, &mlx->bitperpixel,
 			&mlx->line_size, &mlx->endian);
@@ -109,5 +111,5 @@ int	main(int argc, char **argv)
 		ft_exit(data, 2);
 	}
 	replace_space(data->map);
-	mlx_events(data, mlx);
+	mlx_events(data, mlx, argv[1]);
 }
