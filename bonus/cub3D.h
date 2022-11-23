@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/22 18:11:04 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/23 13:30:03 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ typedef struct s_tex
 	int		texwidth;
 	int		texheight;
 }	t_tex;
-
 
 typedef struct s_data
 {
@@ -223,6 +222,7 @@ void		rotl(t_data	*data);
 void		rotr(t_data	*data);
 void		rotrmouse(t_data *data, double speed);
 void		rotlmouse(t_data *data, double speed);
+void		checkmouse(t_data *d);
 /*****************************************************************/
 /*****************************************************************/
 

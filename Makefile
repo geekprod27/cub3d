@@ -82,10 +82,12 @@ $(LIBFT):
 	@$(MAKE) --no-print-directory -C ./libft
 	@printf "\e[2K\r-[\033[1mLIB\033[0m] \033[1;32mLibft\033[0m [${CHECK}]\n"
 
-bonus: $(LIBFT) $(MLX) $(OBJ_BONUS) bonus/cub3D.h
+$(NAME_BONUS): $(LIBFT) $(MLX) $(OBJ_BONUS) bonus/cub3D.h
 	@printf "\e[2K\r- Build \033[1;33m${NAME_BONUS}\033[0m [${PROGRESS}]"
 	@$(CC) $(CFLAGS) $(OBJ_BONUS) -lm -o $(NAME_BONUS) $(MLX) $(LIBFT) -lXext -lX11
 	@printf "\e[2K\r- Build \033[1;32m${NAME_BONUS}\033[0m [${CHECK}]\n"
+
+bonus:	$(NAME_BONUS)
 
 clean:
 	@printf "\e[2K\r- \033[36mClean des objs\033[0m [${PROGRESS}]"

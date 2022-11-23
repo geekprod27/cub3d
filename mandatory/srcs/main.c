@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 14:26:08 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/22 15:52:43 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/23 13:29:02 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,6 @@ int	main(int argc, char **argv)
 	if (!mlx)
 		return (ft_error("Mlx creation failed\n"));
 	mlx->mlx_ptr = mlx_init();
-	mlx->mlx_img = NULL;
-	mlx->mlx_win = NULL;
 	data = get_data(argv[1], mlx);
 	if (!data)
 	{

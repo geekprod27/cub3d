@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 11:51:25 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/22 15:54:11 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/23 13:29:29 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ void	init_data(t_data *ret, t_mlx *mlx)
 	ret->d = 0;
 	ret->dr = 0;
 	ret->ga = 0;
+	mlx->mlx_img = NULL;
+	mlx->mlx_win = NULL;
 }
 
 void	getmap(char *line, int fd, t_data *ret)

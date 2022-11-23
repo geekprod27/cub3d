@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 14:26:08 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/22 18:12:43 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/23 13:30:38 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ int	redcross(void *param)
 
 void	mlx_events(t_data *data, t_mlx *mlx, char *file)
 {
-	file = ft_strjoin_free2("cub3D - ", file);
-	free(file);
+	file = ft_strjoin("cub3D - ", file);
 	mlx->mlx_win = mlx_new_window(mlx->mlx_ptr, WIDTH, HEIGHT, file);
+	free(file);
 	mlx->mlx_img = mlx_new_image(mlx->mlx_ptr, WIDTH, HEIGHT);
 	mlx->mlx_imgadr = mlx_get_data_addr(mlx->mlx_img, &mlx->bitperpixel,
 			&mlx->line_size, &mlx->endian);
@@ -97,8 +97,6 @@ int	main(int argc, char **argv)
 	if (!mlx)
 		return (ft_error("Mlx creation failed\n"));
 	mlx->mlx_ptr = mlx_init();
-	mlx->mlx_img = NULL;
-	mlx->mlx_win = NULL;
 	data = get_data(argv[1], mlx);
 	if (!data)
 	{
