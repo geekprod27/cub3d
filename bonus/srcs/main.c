@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 14:26:08 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/23 13:30:38 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:45:13 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (ft_error("Need 2 arguments\n"));
 	if (!name_check(argv[1]))
-		return (ft_error("Nrong file format, need .cub\n"));
+		return (ft_error("Wrong file format, need .cub\n"));
 	mlx = malloc(sizeof(t_mlx));
 	if (!mlx)
 		return (ft_error("Mlx creation failed\n"));
@@ -105,9 +105,9 @@ int	main(int argc, char **argv)
 	}
 	if (!data->map || !verifmap(data->map, data))
 	{
-		ft_putstr_fd("Error\nInvaild map\n", 2);
+		ft_putstr_fd("Error\nInvalid map\n", 2);
 		ft_exit(data, 2);
 	}
-	replace_space(data->map);
+	replace_space(data->map, data);
 	mlx_events(data, mlx, argv[1]);
 }
