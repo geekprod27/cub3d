@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 11:51:25 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/22 16:53:30 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/23 14:06:29 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	savedataf(t_data *data, int r, int g, int b)
 		data->fb = b;
 }
 
-void	get_trgb(char *line, t_data	*data, char l)
+void	get_trgb(char *line, t_data	*data, char l, int fd)
 {
 	int		r;
 	int		g;
@@ -39,16 +39,16 @@ void	get_trgb(char *line, t_data	*data, char l)
 		line++;
 	line++;
 	if (*line == ',')
-		errorrgb(data, saveline);
+		errorrgb(data, saveline, fd);
 	g = ft_atoi(line);
 	while (*line && *line != ',')
 		line++;
 	line++;
 	if (*line == ',')
-		errorrgb(data, saveline);
+		errorrgb(data, saveline, fd);
 	b = ft_atoi(line);
 	if (r > 255 || g > 255 || b > 255)
-		errorrgb(data, saveline);
+		errorrgb(data, saveline, fd);
 	if (l == 'C')
 		savedatac(data, r, g, b);
 	else
@@ -88,11 +88,17 @@ t_data	*get_data(char *file, t_mlx *mlx)
 		return (NULL);
 	ret = malloc(sizeof(t_data));
 	if (!ret)
+	{
+		close(fd);
 		return (NULL);
+	}
 	init_data(ret, mlx);
 	ret = checkid(ret, fd);
 	if (!ret)
+	{
+		close(fd);
 		return (NULL);
+	}
 	line = get_next_line(fd);
 	getmap(line, fd, ret);
 	close(fd);

@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:51:25 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/23 13:09:56 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/23 13:47:48 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ void	openxpm(t_data *data, char *file, t_tex *tex, int i)
 			&tex[i].line_size, &tex[i].endian);
 }
 
-void	checkopenxpm(int id, char *line, t_data *ret)
+void	checkopenxpm(int id, char *line, t_data *ret, int fd)
 {
 	if (!ret->tex[id].img)
 		openxpm(ret, line + 3, ret->tex, id);
 	else
-		error(line, ret);
+		error(line, ret, fd);
 }

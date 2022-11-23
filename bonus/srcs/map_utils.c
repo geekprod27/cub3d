@@ -6,59 +6,59 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 11:51:25 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/23 13:30:24 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/23 14:02:39 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-void	zeud2(char *line, t_data *ret, int *i)
+void	zeud2(char *line, t_data *ret, int *i, int fd)
 {
 	if (ft_strncmp(line, "F ", 2) == 0)
 	{
 		if (!ret->f)
 		{
 			ret->f = 1;
-			get_trgb(line + 2, ret, line[0]);
+			get_trgb(line + 2, ret, line[0], fd);
 		}
 		else
-			error(line, ret);
+			error(line, ret, fd);
 		*i = *i + 1;
 	}
 	else if (ft_strncmp(line, "C ", 2) == 0)
 	{
 		if (!ret->c)
 		{
-			get_trgb(line + 2, ret, line[0]);
+			get_trgb(line + 2, ret, line[0], fd);
 			ret->c = 1;
 		}
 		else
-			error(line, ret);
+			error(line, ret, fd);
 		*i = *i + 1;
 	}
 	else if (line[0] != '\n')
-		puterrorline(line, ret);
+		puterrorline(line, ret, fd);
 }
 
-void	zeud(char *line, t_data *ret, int *i)
+void	zeud(char *line, t_data *ret, int *i, int fd)
 {
 	if (ft_strncmp(line, "SO ", 3) == 0)
 	{
-		checkopenxpm(1, line, ret);
+		checkopenxpm(1, line, ret, fd);
 		*i = *i + 1;
 	}
 	else if (ft_strncmp(line, "WE ", 3) == 0)
 	{
-		checkopenxpm(2, line, ret);
+		checkopenxpm(2, line, ret, fd);
 		*i = *i + 1;
 	}
 	else if (ft_strncmp(line, "EA ", 3) == 0)
 	{
-		checkopenxpm(3, line, ret);
+		checkopenxpm(3, line, ret, fd);
 		*i = *i + 1;
 	}
 	else
-		zeud2(line, ret, i);
+		zeud2(line, ret, i, fd);
 }
 
 void	*checkid(t_data *ret, int fd)
@@ -80,11 +80,11 @@ void	*checkid(t_data *ret, int fd)
 			if (!ret->tex[0].img)
 				openxpm(ret, line + 3, ret->tex, 0);
 			else
-				error(line, ret);
+				error(line, ret, fd);
 			i++;
 		}
 		else
-			zeud(line, ret, &i);
+			zeud(line, ret, &i, fd);
 		free(line);
 	}
 	return (ret);

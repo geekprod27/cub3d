@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/23 13:28:41 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/23 13:56:16 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,6 @@ t_data		*get_data(char *file, t_mlx *mlx);
 int			name_check(char *arg);
 int			verifmap(char **map, t_data *data);
 void		replace_space(char **map);
-void		error(char *d, t_data *data);
 int			ft_error(char *msg);
 void		data_error(t_mlx *mlx);
 void		mlx_events(t_data *data, t_mlx *mlx);
@@ -202,13 +201,13 @@ void		wall_tex(t_data *d, t_ray *rays, int y, int id);
 
 void		init_data(t_data *ret, t_mlx *mlx);
 void		*checkid(t_data *ret, int fd);
-void		errorrgb(t_data *data, char *line);
-void		puterrorline(char *line, t_data *ret);
-void		error(char *d, t_data *data);
+void		errorrgb(t_data *data, char *line, int fd);
+void		puterrorline(char *line, t_data *ret, int fd);
+void		error(char *d, t_data *data, int fd);
 void		getmap(char *line, int fd, t_data *ret);
 char		**add(char **map, int i, char *line);
-void		get_trgb(char *line, t_data	*data, char l);
-void		checkopenxpm(int id, char *line, t_data *ret);
+void		get_trgb(char *line, t_data	*data, char l, int fd);
+void		checkopenxpm(int id, char *line, t_data *ret, int fd);
 void		openxpm(t_data *data, char *file, t_tex *tex, int i);
 
 /*****************************************************************/
