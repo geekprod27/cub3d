@@ -6,7 +6,7 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 15:52:03 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/23 17:52:14 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/23 18:03:55 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,23 @@ void	minimap(t_data *d)
 	x = 9;
 	//printf("posx %f, posy %f\n", d->posx, d->posy);
 	i = d->posy - 5;
-	while (x < 110 && i < d->xmax)
+	while (x < 110 && i < d->xmax && i > 0)
 	{
 		j = d->posx - 5;
 		y = 9;
-		while (y < 110 && j < d->ymax)
+		while (y < 110 && j < d->ymax && j > 0)
 		{
 			coords = x * d->mlx->line_size + y * (d->mlx->bitperpixel / 8);
 			if (i < 0 || i >= d->xmax || j < 0 || j >= d->ymax)
 			{
 				continue;
+			}
+			else if (d->map[i][j] == '0' || d->map[i][j] == d->spawn)
+			{
+				d->mlx->mlx_imgadr[coords] = 255;
+				d->mlx->mlx_imgadr[coords + 1] = 204;
+				d->mlx->mlx_imgadr[coords + 2] = 153;
+				d->mlx->mlx_imgadr[coords + 3] = 1;
 			}
 			else if (i == d->posy && j == d->posx)
 			{
@@ -45,17 +52,8 @@ void	minimap(t_data *d)
 			}
 			else if (d->map[i][j] == '1')
 			{
-				//printf("1:%c\n", d->map[(x + 1) / 10][(y + 1) / 10]);
 				d->mlx->mlx_imgadr[coords] = 255;
 				d->mlx->mlx_imgadr[coords + 1] = 153;
-				d->mlx->mlx_imgadr[coords + 2] = 153;
-				d->mlx->mlx_imgadr[coords + 3] = 1;
-			}
-			else if (d->map[i][j] == '0' || d->map[i][j] == d->spawn)
-			{
-				//printf("0:%c\n", d->map[(x + 1) / 10][(y + 1) / 10]);
-				d->mlx->mlx_imgadr[coords] = 255;
-				d->mlx->mlx_imgadr[coords + 1] = 204;
 				d->mlx->mlx_imgadr[coords + 2] = 153;
 				d->mlx->mlx_imgadr[coords + 3] = 1;
 			}
