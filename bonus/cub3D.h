@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/23 14:02:22 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:44:52 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ typedef struct s_data
 	double	oldplany;
 	double	olddirx;
 	double	olddiry;
+	int		xmax;
+	int		ymax;
 }	t_data;
 
 typedef struct s_ray
@@ -132,7 +134,7 @@ enum {
 t_data		*get_data(char *file, t_mlx *mlx);
 int			name_check(char *arg);
 int			verifmap(char **map, t_data *data);
-void		replace_space(char **map);
+void		replace_space(char **map, t_data *d);
 int			ft_error(char *msg);
 void		data_error(t_mlx *mlx);
 void		mlx_events(t_data *data, t_mlx *mlx, char *file);

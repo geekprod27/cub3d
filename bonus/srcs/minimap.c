@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 15:52:03 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/23 17:35:16 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:39:50 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	minimap(t_data *d)
 				d->mlx->mlx_imgadr[coords + 2] = 153;
 				d->mlx->mlx_imgadr[coords + 3] = 1;
 			}
-			else if (d->map[i][j] == '0')
+			else if (d->map[i][j] == '0' || d->map[i][j] == d->spawn)
 			{
 				//printf("0:%c\n", d->map[(x + 1) / 10][(y + 1) / 10]);
 				d->mlx->mlx_imgadr[coords] = 255;

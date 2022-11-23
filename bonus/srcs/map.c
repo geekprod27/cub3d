@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 15:43:01 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/18 15:57:55 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:44:29 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	verifmap(char **map, t_data *data)
 	return (havespwn);
 }
 
-void	replace_space(char **map)
+void	replace_space(char **map, t_data *d)
 {
 	int	x;
 	int	y;
@@ -83,6 +83,9 @@ void	replace_space(char **map)
 				map[x][y] = '1';
 			y++;
 		}
+		if (d->ymax < y)
+			d->ymax = y;
 		x++;
 	}
+	d->xmax = x;
 }
