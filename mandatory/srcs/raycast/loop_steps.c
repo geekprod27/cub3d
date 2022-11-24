@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_steps.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:40:12 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/21 13:02:34 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/24 14:58:36 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	base_calc(t_data *data, t_ray *rays)
 {
 	rays->hit = 0;
-	rays->camerax = 2 * rays->x / (double)(WIDTH) - 1;
+	rays->camerax = 2 * (WIDTH - rays->x) / (double)(WIDTH) - 1;
 	rays->raydirx = data->dirx + data->planx * rays->camerax;
 	rays->raydiry = data->diry + data->plany * rays->camerax;
 	rays->mapx = (int)(data->posx);

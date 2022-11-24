@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:47:42 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/23 13:25:37 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/24 14:57:38 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,7 @@ void	ft_exit(t_data	*data, int exi)
 	if (data->tex[3].img)
 		mlx_destroy_image(data->mlx->mlx_ptr, data->tex[3].img);
 	if (data->mlx->mlx_win)
-	{
-		mlx_mouse_show(data->mlx->mlx_ptr, data->mlx->mlx_win);
 		mlx_destroy_window(data->mlx->mlx_ptr, data->mlx->mlx_win);
-	}
 	if (data->mlx->mlx_ptr)
 	{
 		mlx_destroy_display(data->mlx->mlx_ptr);

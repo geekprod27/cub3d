@@ -6,13 +6,13 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:40:03 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/23 13:26:24 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/24 14:57:11 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-void	rotr(t_data *data)
+void	rotl(t_data *data)
 {
 	double	olddirx;
 	double	oldplanex;
@@ -25,7 +25,7 @@ void	rotr(t_data *data)
 	data->plany = oldplanex * sin(-ROTSPEED) + data->plany * cos(-ROTSPEED);
 }
 
-void	rotl(t_data	*data)
+void	rotr(t_data	*data)
 {
 	double	olddirx;
 	double	oldplanex;
@@ -58,7 +58,7 @@ void	checkmouse(t_data *d)
 	mlx_mouse_move(d->mlx->mlx_ptr, d->mlx->mlx_win, HEIGHT / 2, WIDTH / 2);
 }
 
-void	rotrmouse(t_data *data, double speed)
+void	rotlmouse(t_data *data, double speed)
 {
 	double	olddirx;
 	double	oldplanex;
@@ -71,7 +71,7 @@ void	rotrmouse(t_data *data, double speed)
 	data->plany = oldplanex * sin(-speed) + data->plany * cos(-speed);
 }
 
-void	rotlmouse(t_data	*data, double speed)
+void	rotrmouse(t_data	*data, double speed)
 {
 	double	olddirx;
 	double	oldplanex;

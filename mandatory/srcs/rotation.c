@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   rotation.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:40:03 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/22 13:40:05 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/24 14:59:03 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-void	rotr(t_data *data)
+void	rotl(t_data *data)
 {
 	double	olddirx;
 	double	oldplanex;
@@ -25,7 +25,7 @@ void	rotr(t_data *data)
 	data->plany = oldplanex * sin(-ROTSPEED) + data->plany * cos(-ROTSPEED);
 }
 
-void	rotl(t_data	*data)
+void	rotr(t_data	*data)
 {
 	double	olddirx;
 	double	oldplanex;

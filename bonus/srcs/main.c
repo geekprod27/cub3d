@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 14:26:08 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/23 17:45:13 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/24 14:57:23 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void	mlx_events(t_data *data, t_mlx *mlx, char *file)
 	mlx_loop_hook(mlx->mlx_ptr, reaf, data);
 	init_dir_plan(data);
 	mlx_mouse_move(mlx->mlx_ptr, mlx->mlx_win, HEIGHT / 2, WIDTH / 2);
-	mlx_mouse_hide(mlx->mlx_ptr, mlx->mlx_win);
 	raycasting_loop(data, data->mlx);
 	mlx_loop(mlx->mlx_ptr);
 }

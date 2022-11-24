@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:08:44 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/18 15:29:45 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/24 14:05:21 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	reculer(t_data	*data)
 		data->posy -= data->diry * MOVESPEED;
 }
 
-void	droite(t_data	*data)
+void	gauche(t_data	*data)
 {
 	int	x;
 
@@ -48,7 +48,7 @@ void	droite(t_data	*data)
 		data->posy -= data->dirx * MOVESPEED;
 }
 
-void	gauche(t_data	*data)
+void	droite(t_data	*data)
 {
 	int	x;
 

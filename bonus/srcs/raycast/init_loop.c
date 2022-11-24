@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:38:37 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/21 11:38:45 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/23 18:39:24 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ void	set_dir_plan(t_data *data)
 	}
 	else if (data->spawn == 'E')
 	{
-		data->planx = 0.66;
-		data->diry = 1;
+		data->planx = -0.66;
+		data->diry = -1;
 	}
 	else if (data->spawn == 'W')
 	{
-		data->planx = -0.66;
-		data->diry = -1;
+		data->planx = 0.66;
+		data->diry = 1;
 	}
 }
 
