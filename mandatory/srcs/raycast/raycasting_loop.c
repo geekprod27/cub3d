@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:09:19 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/22 16:09:41 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/25 13:39:29 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	raycasting_loop(t_data *data, t_mlx *mlx)
 
 	x = 0;
 	rays = malloc(sizeof(t_ray));
+	if (!rays)
+		return ;
 	while (x < WIDTH)
 	{
 		rays->x = x;

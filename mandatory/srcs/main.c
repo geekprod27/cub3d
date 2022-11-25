@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 14:26:08 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/23 16:21:45 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/25 13:56:58 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,15 @@ int	redcross(void *param)
 void	mlx_events(t_data *data, t_mlx *mlx)
 {
 	mlx->mlx_win = mlx_new_window(mlx->mlx_ptr, WIDTH, HEIGHT, "cub3D");
+	if (!mlx->mlx_win)
+		ft_exit(data, 1);
 	mlx->mlx_img = mlx_new_image(mlx->mlx_ptr, WIDTH, HEIGHT);
+	if (!mlx->mlx_img)
+		ft_exit(data, 1);
 	mlx->mlx_imgadr = mlx_get_data_addr(mlx->mlx_img, &mlx->bitperpixel,
 			&mlx->line_size, &mlx->endian);
+	if (!mlx->mlx_imgadr)
+		ft_exit(data, 1);
 	mlx_hook(mlx->mlx_win, ON_KEYDOWN, 1L << 0, keydown, data);
 	mlx_hook(mlx->mlx_win, ON_KEYUP, 1L << 1, keyup, data);
 	mlx_hook(mlx->mlx_win, ON_DESTROY, 0, redcross, data);
@@ -94,11 +100,10 @@ int	main(int argc, char **argv)
 		return (ft_error("Mlx creation failed\n"));
 	mlx->mlx_ptr = mlx_init();
 	data = get_data(argv[1], mlx);
+	if (!mlx->mlx_ptr)
+		return (ft_error("Mlx creation failed\n"));
 	if (!data)
-	{
 		data_error(mlx);
-		exit(2);
-	}
 	if (!data->map || !verifmap(data->map, data))
 	{
 		ft_putstr_fd("Error\nInvalid map\n", 2);
