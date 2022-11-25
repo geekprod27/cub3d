@@ -6,7 +6,7 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/25 13:42:39 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/25 14:54:48 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ typedef struct s_data
 	double	olddiry;
 	int		xmax;
 	int		ymax;
+	int		mx;
+	int		my;
 }	t_data;
 
 typedef struct s_ray
@@ -144,7 +146,7 @@ char		**ft_addb(char **map, char *line);
 void		saveold(t_data *data);
 void		freetab(char **map);
 void		ft_exit(t_data	*data, int exi);
-void		minimap(t_data *d, int x);
+void		minimap(t_data *d);
 
 /*****************************************************************/
 /*************************RAYCASTING_LOOP*************************/

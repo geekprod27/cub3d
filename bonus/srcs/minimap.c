@@ -6,7 +6,7 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 15:52:03 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/25 14:48:42 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/25 14:58:12 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,37 +48,42 @@ static int	verif_jump(int *j, size_t l)
 	return (0);
 }
 
-void	minimap(t_data *d, int x)
+static void	y_loop(t_data *d, int i, int *j, size_t l)
 {
-	int	y;
+	int	coords;
+
+	while (d->my < 210 && *j < (int)l)
+	{
+		coords = d->mx * d->mlx->line_size + d->my * (d->mlx->bitperpixel / 8);
+		if (verif_jump(j, l))
+			continue ;
+		img(d, coords, i, *j);
+		if ((d->my + 1) % 10 == 0)
+			*j += 1;
+		d->my++;
+	}
+}
+
+void	minimap(t_data *d)
+{
 	int	i;
 	int	j;
 	size_t	l;
-	int	coords;
 
 	i = (int)d->posy - 10;
-	while (x < 210 && i < d->xmax)
+	while (d->mx < 210 && i < d->xmax)
 	{
 		j = (int)d->posx - 10;
-		y = 9;
+		d->my = 9;
 		if (i < 0 || i >= d->xmax)
 		{
 			i++;
 			continue ;
 		}
 		l = ft_strlen(d->map[i]);
-		while (y < 210 && j < (int)l)
-		{
-			coords = x * d->mlx->line_size + y * (d->mlx->bitperpixel / 8);
-			if (verif_jump(&j, l))
-				continue ;
-			img(d, coords, i, j);
-			if ((y + 1) % 10 == 0)
-				j++;
-			y++;
-		}
-		if ((x + 1) % 10 == 0)
+		y_loop(d, i, &j, l);
+		if ((d->mx + 1) % 10 == 0)
 			i++;
-		x++;
+		d->mx++;
 	}
 }
