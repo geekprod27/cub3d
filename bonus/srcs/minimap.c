@@ -6,7 +6,7 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 15:52:03 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/25 14:33:23 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/25 14:48:42 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,10 @@ static void	img(t_data *d, int coords, int i, int j)
 	}
 }
 
-static int	verif_jump(t_data *d, int *i, int *j, size_t l)
+static int	verif_jump(int *j, size_t l)
 {
-	(void)(*i);
-	(void)d;
-	if (*j < 0 || (size_t)(*j) >= l)
+	if (*j < 0 || *j >= (int)l)
 	{
-		// if (*i < 0)
-		// 	*i += 1;
 		if (*j < 0)
 			*j += 1;
 		return (1);
@@ -71,10 +67,10 @@ void	minimap(t_data *d, int x)
 			continue ;
 		}
 		l = ft_strlen(d->map[i]);
-		while (y < 210 && (size_t) j < l)
+		while (y < 210 && j < (int)l)
 		{
 			coords = x * d->mlx->line_size + y * (d->mlx->bitperpixel / 8);
-			if (verif_jump(d, &i, &j, l))
+			if (verif_jump(&j, l))
 				continue ;
 			img(d, coords, i, j);
 			if ((y + 1) % 10 == 0)
