@@ -1,7 +1,7 @@
-NO ./sprites/eagle.xpm
-SO ./sprites/greystone.xpm
-WE ./sprites/purplestone.xpm
-EA ./sprites/red.xpm
+NO ./texture/Stone1.xpm
+SO ./texture/Stone2.xpm
+WE ./texture/Water1.xpm
+EA ./texture/Water2.xpm
 
 F 0,30,100
 C 255,255,0
