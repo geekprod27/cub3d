@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_steps.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:40:12 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/24 14:58:36 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/25 17:37:08 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,8 @@ void	side_texture(t_data *data, t_ray *rays)
 	else
 	{
 		if (rays->mapy < data->posy)
-			texture(data, rays, 2);
-		else
 			texture(data, rays, 3);
+		else
+			texture(data, rays, 2);
 	}
 }

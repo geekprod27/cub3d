@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:39:49 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/23 14:07:42 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/25 17:38:41 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	puterrorline(char *line, t_data *ret, int fd)
 {
 	ft_putstr_fd("Error\nUnknown ID on line : ", 2);
 	ft_putstr_fd(line, 2);
-	ft_putstr_fd("\n", 2);
 	free(line);
 	close(fd);
 	ft_exit(ret, 1);
@@ -34,7 +33,6 @@ void	error(char *d, t_data *data, int fd)
 {
 	ft_putstr_fd("Error\nMultiple ID : ", 2);
 	ft_putstr_fd(d, 2);
-	ft_putstr_fd("\n", 2);
 	free(d);
 	close(fd);
 	ft_exit(data, 3);
