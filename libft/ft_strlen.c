@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 15:05:32 by nfelsemb          #+#    #+#             */
-/*   Updated: 2021/11/29 17:06:05 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/25 14:14:22 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_strlen(const char *tab)
 	int	i;
 
 	i = 0;
+	if (!tab)
+		return (0);
 	while (tab[i] != '\0')
 		i++;
 	return (i);

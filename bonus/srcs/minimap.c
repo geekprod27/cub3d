@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 15:52:03 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/25 13:51:50 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/25 14:18:42 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	minimap(t_data *d, int x)
 	int	y;
 	int	i;
 	int	j;
+	size_t	l;
 	int	coords;
 
 	i = (int)d->posy - 10;
@@ -62,7 +63,9 @@ void	minimap(t_data *d, int x)
 	{
 		j = (int)d->posx - 10;
 		y = 9;
-		while (y < 210 && j < d->ymax)
+		dprintf(2, "%s\n", d->map[i]);
+		l = ft_strlen(d->map[i]);
+		while (y < 210 && (size_t) j < l)
 		{
 			coords = x * d->mlx->line_size + y * (d->mlx->bitperpixel / 8);
 			if (verif_jump(d, &i, &j))
