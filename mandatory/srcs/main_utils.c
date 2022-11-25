@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:47:42 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/22 14:43:21 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/25 13:55:23 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	data_error(t_mlx *mlx)
 	}
 	if (mlx)
 		free(mlx);
+	exit(2);
 }
 
 int	reaf(void *param)

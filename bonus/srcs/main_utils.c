@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:47:42 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/24 14:57:38 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/25 13:53:23 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	data_error(t_mlx *mlx)
 	}
 	if (mlx)
 		free(mlx);
+	exit(2);
 }
 
 int	reaf(void *param)

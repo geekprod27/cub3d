@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_loop.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:09:19 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/25 13:42:49 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/25 13:58:26 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	raycasting_loop(t_data *data, t_mlx *mlx)
 
 	x = 0;
 	rays = malloc(sizeof(t_ray));
+	if (!rays)
+		return ;
 	while (x < WIDTH)
 	{
 		rays->x = x;
