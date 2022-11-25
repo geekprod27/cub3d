@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 15:52:03 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/25 14:18:42 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/11/25 14:33:23 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,14 @@ static void	img(t_data *d, int coords, int i, int j)
 	}
 }
 
-static int	verif_jump(t_data *d, int *i, int *j)
+static int	verif_jump(t_data *d, int *i, int *j, size_t l)
 {
-	if (*i < 0 || *i >= d->xmax || *j < 0 || *j >= d->ymax)
+	(void)(*i);
+	(void)d;
+	if (*j < 0 || (size_t)(*j) >= l)
 	{
-		if (*i < 0)
-			*i += 1;
+		// if (*i < 0)
+		// 	*i += 1;
 		if (*j < 0)
 			*j += 1;
 		return (1);
@@ -63,12 +65,16 @@ void	minimap(t_data *d, int x)
 	{
 		j = (int)d->posx - 10;
 		y = 9;
-		dprintf(2, "%s\n", d->map[i]);
+		if (i < 0 || i >= d->xmax)
+		{
+			i++;
+			continue ;
+		}
 		l = ft_strlen(d->map[i]);
 		while (y < 210 && (size_t) j < l)
 		{
 			coords = x * d->mlx->line_size + y * (d->mlx->bitperpixel / 8);
-			if (verif_jump(d, &i, &j))
+			if (verif_jump(d, &i, &j, l))
 				continue ;
 			img(d, coords, i, j);
 			if ((y + 1) % 10 == 0)
