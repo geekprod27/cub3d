@@ -6,7 +6,7 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 15:52:03 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/25 14:58:12 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/11/25 14:59:36 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ static void	y_loop(t_data *d, int i, int *j, size_t l)
 
 void	minimap(t_data *d)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	size_t	l;
 
 	i = (int)d->posy - 10;
