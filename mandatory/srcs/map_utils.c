@@ -19,7 +19,7 @@ void	zeud2(char *line, t_data *ret, int *i, int fd)
 		if (!ret->f)
 		{
 			ret->f = 1;
-			get_trgb(line + 2, ret, line[0], fd);
+			get_trgb(line + 1, ret, line[0], fd);
 		}
 		else
 			error(line, ret, fd);
@@ -29,7 +29,7 @@ void	zeud2(char *line, t_data *ret, int *i, int fd)
 	{
 		if (!ret->c)
 		{
-			get_trgb(line + 2, ret, line[0], fd);
+			get_trgb(line + 1, ret, line[0], fd);
 			ret->c = 1;
 		}
 		else

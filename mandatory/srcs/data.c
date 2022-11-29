@@ -26,33 +26,58 @@ void	savedataf(t_data *data, int r, int g, int b)
 		data->fb = b;
 }
 
+void	checkvir(char *line, int i, t_data *data, int fd)
+{
+	int	contvir;
+
+	contvir = 0;
+	while (line[i])
+	{
+		if (line[i] == ',')
+			contvir++;
+		if (contvir > 2)
+			errorrgb(data, line - 1, fd);
+		i++;
+	}
+	if (contvir != 2)
+		errorrgb(data, line - 1, fd);
+}
+
+void	checkchar(char *line, int i, t_data *data, int fd)
+{
+	while (line[i])
+	{
+		if (line[i] != ',' && !ft_isdigit(line[i]) && line[i] != '\n')
+			errorrgb(data, line - 1, fd);
+		i++;
+	}
+}
+
+int	skipspace(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] && line[i] == ' ')
+		i++;
+	return (i);
+}
+
 void	get_trgb(char *line, t_data	*data, char l, int fd)
 {
-	int		r;
-	int		g;
-	int		b;
-	char	*saveline;
+	// int		r;
+	// int		g;
+	// int		b;
+	int		i;
 
-	saveline = line - 2;
-	r = ft_atoi(line);
-	while (*line && *line != ',')
-		line++;
-	line++;
-	if (*line == ',')
-		errorrgb(data, saveline, fd);
-	g = ft_atoi(line);
-	while (*line && *line != ',')
-		line++;
-	line++;
-	if (*line == ',')
-		errorrgb(data, saveline, fd);
-	b = ft_atoi(line);
-	if (r > 255 || g > 255 || b > 255)
-		errorrgb(data, saveline, fd);
-	if (l == 'C')
-		savedatac(data, r, g, b);
-	else
-		savedataf(data, r, g, b);
+	i = skipspace(line);
+	checkchar(line, i, data, fd);
+	checkvir(line, i, data, fd);
+	(void) l;
+	// if (l == 'C')
+	// 	savedatac(data, r, g, b);
+	// else
+	// 	savedataf(data, r, g, b);
 }
 
 char	**add(char **map, int i, char *line)
