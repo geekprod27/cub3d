@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 16:13:09 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/12/05 16:37:45 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/12/05 16:49:16 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ void	get_trgb(char *line, t_data	*data, char l, int fd)
 	g = ft_atoi(line + i);
 	i = getnewi(line, i, fd, data);
 	b = ft_atoi(line + i);
+	if (r > 255 || g > 255 || b > 255)
+		errorrgb(data, line - 1, fd);
 	if (l == 'C')
 		savedatac(data, r, g, b);
 	else

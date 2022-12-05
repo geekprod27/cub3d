@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:51:25 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/12/05 16:08:31 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/12/05 16:45:52 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,18 @@ int	name_check(char *arg)
 void	openxpm(t_data *data, char *file, t_tex *tex, int i)
 {
 	char	*filed;
+	char	*filedd;
 	int		j;
 
 	j = 0;
 	while (file[j] && file[j] == ' ')
 		j++;
 	filed = ft_strtrim(file + j, "\n");
-	tex[i].img = mlx_xpm_file_to_image(data->mlx->mlx_ptr, filed,
+	filedd = ft_strtrim(filed, " ");
+	tex[i].img = mlx_xpm_file_to_image(data->mlx->mlx_ptr, filedd,
 			&(tex[i].texwidth), &(tex[i].texheight));
 	free(filed);
+	free(filedd);
 	if (!tex[i].img)
 	{
 		printf("Error\nopen fail on file %s", file + j);
