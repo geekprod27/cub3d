@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 16:13:09 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/12/05 16:13:35 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/12/05 16:37:45 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	checkvir(char *line, int i, t_data *data, int fd)
 		if (line[i] == ',')
 		{
 			contvir++;
-			if (!ft_isdigit(line[i - 1] || !ft_isdigit(line[i + 1])))
+			if (ft_isdigit(line[i - 1]) == 0 || ft_isdigit(line[i + 1]) == 0)
 				errorrgb(data, line - 1, fd);
 		}
 		if (contvir > 2)
