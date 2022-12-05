@@ -1,9 +1,9 @@
-NO ./sprites/eagle.xpm
-SO ./sprites/greystone.xpm
-WE ./sprites/purplestone.xpm
-EA ./sprites/red.xpm
+NO ./texture/bluestone.xpm
+SO ./texture/colorstone.xpm
+WE ./texture/redbrick.xpm
+EA ./texture/wood.xpm
 
-F 220,100,0
+F 220,100,106
 C 225,30,0
         1111111111111111111111111
         1000000000110000000000001

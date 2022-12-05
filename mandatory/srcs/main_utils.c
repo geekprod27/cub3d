@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:47:42 by llepiney          #+#    #+#             */
-/*   Updated: 2022/11/25 13:55:23 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/12/05 17:03:11 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,6 @@ void	ft_exit(t_data	*data, int exi)
 void	data_error(t_mlx *mlx)
 {
 	ft_putstr_fd("Error\nData creation failed\n", 2);
-	if (mlx->mlx_img)
-		mlx_destroy_image(mlx->mlx_ptr, mlx->mlx_img);
-	if (mlx->mlx_win)
-		mlx_destroy_window(mlx->mlx_ptr, mlx->mlx_win);
 	if (mlx->mlx_ptr)
 	{
 		mlx_destroy_display(mlx->mlx_ptr);
