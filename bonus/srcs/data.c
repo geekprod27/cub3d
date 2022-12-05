@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 11:51:25 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/23 14:06:29 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/12/05 16:14:24 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,35 +24,6 @@ void	savedataf(t_data *data, int r, int g, int b)
 		data->fr = r;
 		data->fg = g;
 		data->fb = b;
-}
-
-void	get_trgb(char *line, t_data	*data, char l, int fd)
-{
-	int		r;
-	int		g;
-	int		b;
-	char	*saveline;
-
-	saveline = line - 2;
-	r = ft_atoi(line);
-	while (*line && *line != ',')
-		line++;
-	line++;
-	if (*line == ',')
-		errorrgb(data, saveline, fd);
-	g = ft_atoi(line);
-	while (*line && *line != ',')
-		line++;
-	line++;
-	if (*line == ',')
-		errorrgb(data, saveline, fd);
-	b = ft_atoi(line);
-	if (r > 255 || g > 255 || b > 255)
-		errorrgb(data, saveline, fd);
-	if (l == 'C')
-		savedatac(data, r, g, b);
-	else
-		savedataf(data, r, g, b);
 }
 
 char	**add(char **map, int i, char *line)

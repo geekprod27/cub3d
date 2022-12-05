@@ -18,6 +18,7 @@ SRC_NAME =	main.c 						\
 			data_utils.c				\
 			map_utils.c					\
 			rotation.c					\
+			data_rgb.c					\
 			error.c						\
 			texture.c
 
@@ -31,6 +32,7 @@ SRC_BONUS =	main.c 						\
 			raycast/loop_steps.c		\
 			data_utils.c				\
 			minimap.c					\
+			data_rgb.c					\
 			map_utils.c					\
 			rotation.c					\
 			error.c						\

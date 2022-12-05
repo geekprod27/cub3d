@@ -6,7 +6,7 @@
 /*   By: nfelsemb <nfelsemb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:39:34 by nfelsemb          #+#    #+#             */
-/*   Updated: 2022/11/23 13:56:16 by nfelsemb         ###   ########.fr       */
+/*   Updated: 2022/12/05 16:15:22 by nfelsemb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,6 +209,8 @@ char		**add(char **map, int i, char *line);
 void		get_trgb(char *line, t_data	*data, char l, int fd);
 void		checkopenxpm(int id, char *line, t_data *ret, int fd);
 void		openxpm(t_data *data, char *file, t_tex *tex, int i);
+void		savedatac(t_data *data, int r, int g, int b);
+void		savedataf(t_data *data, int r, int g, int b);
 
 /*****************************************************************/
 /****************************MOVEMENTS****************************/
